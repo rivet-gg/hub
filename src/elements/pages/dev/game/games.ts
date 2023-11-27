@@ -21,6 +21,7 @@ import logging from '../../../../utils/logging';
 import { GroupCreateEvent } from '../../../modals/create-group';
 import { globalEventGroups } from '../../../../utils/global-events';
 import { RepeatingRequest } from '../../../../utils/repeating-request';
+import { GamesQuery } from '../../../../data/queries/clients';
 
 const tailwindConfig = require('../../../../../tailwind.config.js');
 const tailwind_palette = tailwindConfig.theme.extend.colors;
@@ -29,8 +30,7 @@ const tailwind_palette = tailwindConfig.theme.extend.colors;
 export default class DevGames extends LitElement {
 	static styles = cssify(styles);
 
-	@property({ type: Object })
-	data: CloudDashboardCache.Payload = null;
+	games = new GamesQuery(this);
 
 	@property({ type: Object })
 	loadError?: any;
@@ -64,8 +64,6 @@ export default class DevGames extends LitElement {
 
 	@property({ type: Boolean })
 	gameIsValid = false;
-
-	gamesStream?: RepeatingRequest<cloud.GetGamesCommandOutput>;
 
 	// === DEBOUNCE INFO ===
 	validateGameDebounce: Debounce<() => ReturnType<typeof global.cloud.validateGame>>;
@@ -102,70 +100,12 @@ export default class DevGames extends LitElement {
 		});
 	}
 
-	firstUpdated(changedProperties: PropertyValues) {
-		super.firstUpdated(changedProperties);
-
-		this.fetchData();
-	}
-
-	disconnectedCallback() {
-		super.disconnectedCallback();
-
-		if (this.gamesStream) this.gamesStream.cancel();
-	}
-
-	async fetchData(forceRestart = false) {
-		if (this.gamesStream) this.gamesStream.cancel();
-
-		// Fetch events
-		this.gamesStream = CloudDashboardCache.watch(
-			'DevGames.gamesStream',
-			data => {
-				data.games.sort((a, b) => a.displayName.localeCompare(b.displayName));
-				data.groups.sort((a, b) =>
-					a.isDeveloper == b.isDeveloper
-						? a.displayName.localeCompare(b.displayName)
-						: +b.isDeveloper - +a.isDeveloper
-				);
-				this.data = data;
-
-				this.devGroupOptions = this.data.groups
-					.filter(group => group.isDeveloper)
-					.map(group => ({
-						template: html`<group-handle-tile
-							light
-							no-link
-							.group=${group as any}
-							style=${styleMap({ '--font-size': '12px' })}
-						></group-handle-tile>`,
-						value: group.groupId
-					}));
-
-				// Set group selection if only one dev group exists
-				if (this.devGroupOptions.length == 1) {
-					this.gameGroupSelection = this.devGroupOptions[0];
-				}
-			},
-			{ watchIndex: forceRestart ? null : undefined }
-		);
-
-		this.gamesStream.onError(err => {
-			logging.error('Request error', err);
-
-			// Only set `loadError` on initiation
-			if (this.data) globalEventGroups.dispatch('error', err);
-			else this.loadError = err;
-		});
-	}
-
 	openGroupModal() {
 		this.createGroupModalActive = true;
 	}
 
 	async convertGroup(groupId: string) {
 		await global.cloud.convertGroup({ groupId });
-
-		this.fetchData(true);
 	}
 
 	async createGroupComplete(event: GroupCreateEvent) {
@@ -188,7 +128,6 @@ export default class DevGames extends LitElement {
 				developerGroupId: this.gameGroupSelection.value
 			});
 
-			this.fetchData(true);
 			this.gameModalClose();
 
 			// Open new game page
@@ -205,7 +144,7 @@ export default class DevGames extends LitElement {
 	}
 
 	openGameModal(groupId: string) {
-		if (this.data.groups.length == 0) {
+		if (this.games.query.data?.groups.length == 0) {
 			showAlert('Cannot create game', html`You cannot create a game before creating a group first.`, [
 				{
 					label: 'Create A Group',
@@ -243,7 +182,7 @@ export default class DevGames extends LitElement {
 		return html`
 			<div id="base" class="pb-12">
 				<div id="body">
-					${when(this.data !== null, this.renderBody.bind(this), this.renderPlaceholder)}
+					${when(this.games.query.isLoading, this.renderPlaceholder, this.renderBody.bind(this))}
 				</div>
 			</div>
 
@@ -259,10 +198,10 @@ export default class DevGames extends LitElement {
 
 	renderBody() {
 		return html`
-			${this.data.groups.length
+			${this.games.query.data.groups.length
 				? html`<div id="groups-list">
 						${repeat(
-							this.data.groups,
+							this.games.query.data.groups,
 							g => g.groupId,
 							g => this.renderGroup(g)
 						)}
@@ -393,12 +332,14 @@ export default class DevGames extends LitElement {
 									</div>
 								</div>
 								${repeat(
-									this.data.games.filter(g => g.developerGroupId == group.groupId),
+									this.games.query.data?.games.filter(
+										g => g.developerGroupId == group.groupId
+									),
 									g => g.gameId,
 									g =>
 										html`<dev-game-tile
 											.game=${g}
-											.group=${this.data.groups.find(
+											.group=${this.games.query.data.groups.find(
 												gr => gr.groupId == g.developerGroupId
 											)}
 										></dev-game-tile>`
@@ -411,7 +352,7 @@ export default class DevGames extends LitElement {
 	}
 
 	renderCreateGameModal() {
-		if (!this.data) return null;
+		if (!this.games.query.data) return null;
 
 		let displayName = this.gameDisplayNameValue;
 		let displayNameErrors = this.gameValidationErrors.findFormatted('display-name');

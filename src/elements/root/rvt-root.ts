@@ -20,6 +20,7 @@ import { RepeatingRequest } from '../../utils/repeating-request';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { repeat } from 'lit/directives/repeat.js';
 import { when } from 'lit/directives/when.js';
+import { QueryDevtools } from '../../data/queries/clients';
 
 export const MIN_SWIPE_THRESHOLD = 10;
 const TRANSITION_LENGTH = timing.milliseconds(200); // Match with consts.scss/$transition-length
@@ -145,6 +146,9 @@ export default class RvtRoot extends LitElement {
 	@property({ type: Object })
 	activeRepeatingRequests = new Map<number, RepeatingRequest<any>>();
 
+	@query('#devtools')
+	private devtools: HTMLElement;
+
 	constructor() {
 		super();
 
@@ -177,6 +181,8 @@ export default class RvtRoot extends LitElement {
 		// Handle key down
 		this.handleKeyDown = this.onKeyDown.bind(this);
 		windowEventGroups.add('keydown', this.handleKeyDown);
+
+		QueryDevtools.mount(document.getElementById('devtools'));
 	}
 
 	disconnectedCallback() {
@@ -418,6 +424,7 @@ export default class RvtRoot extends LitElement {
 		}
 
 		return html`
+			<div id="devtools"></div>
 			<!-- Debug -->
 			${when(config.DEBUG, () => this.renderDebug())}
 

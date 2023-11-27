@@ -2130,7 +2130,7 @@
     "@aws-sdk/util-user-agent-node" "3.80.0"
     "@aws-sdk/util-utf8-browser" "3.55.0"
     "@aws-sdk/util-utf8-node" "3.55.0"
-    "@rivet-gg/common" "file:../../../usr/local/share/.cache/yarn/v6/npm-@rivet-gg-auth-0.0.1-11627fa7-952c-456a-bf9b-01ec08de7ddc-1698908021496/node_modules/lib/rivet-sdk-js"
+    "@rivet-gg/common" "file:../../../../Library/Caches/Yarn/v6/npm-@rivet-gg-auth-0.0.1-e8414345-c30e-4d31-a535-1c9012a26111-1700572319534/node_modules/lib/rivet-sdk-js"
     tslib "^2.3.1"
 
 "@rivet-gg/chat@file:gen/api-chat":
@@ -2165,7 +2165,7 @@
     "@aws-sdk/util-user-agent-node" "3.80.0"
     "@aws-sdk/util-utf8-browser" "3.55.0"
     "@aws-sdk/util-utf8-node" "3.55.0"
-    "@rivet-gg/common" "file:../../../usr/local/share/.cache/yarn/v6/npm-@rivet-gg-chat-0.0.7-5243a449-4820-47d8-940a-99f72d4b38f6-1698908021536/node_modules/lib/rivet-sdk-js"
+    "@rivet-gg/common" "file:../../../../Library/Caches/Yarn/v6/npm-@rivet-gg-chat-0.0.7-eec3401e-70b8-4a92-b810-8060b945761e-1700572319543/node_modules/lib/rivet-sdk-js"
     tslib "^2.3.1"
 
 "@rivet-gg/cloud@file:gen/api-cloud":
@@ -2200,7 +2200,7 @@
     "@aws-sdk/util-user-agent-node" "3.80.0"
     "@aws-sdk/util-utf8-browser" "3.55.0"
     "@aws-sdk/util-utf8-node" "3.55.0"
-    "@rivet-gg/common" "file:../../../usr/local/share/.cache/yarn/v6/npm-@rivet-gg-cloud-0.0.1-4e9c7d5d-fcff-4df2-8c81-df67dd45abbd-1698908021543/node_modules/lib/rivet-sdk-js"
+    "@rivet-gg/common" "file:../../../../Library/Caches/Yarn/v6/npm-@rivet-gg-cloud-0.0.1-7335b691-28ff-4915-8a0c-5a74cd98d552-1700572319548/node_modules/lib/rivet-sdk-js"
     tslib "^2.3.1"
 
 "@rivet-gg/common@file:lib/rivet-sdk-js":
@@ -2241,7 +2241,7 @@
     "@aws-sdk/util-user-agent-node" "3.80.0"
     "@aws-sdk/util-utf8-browser" "3.55.0"
     "@aws-sdk/util-utf8-node" "3.55.0"
-    "@rivet-gg/common" "file:../../../usr/local/share/.cache/yarn/v6/npm-@rivet-gg-group-0.0.7-1a9cde87-01b2-41d2-bad1-292bc1ad48cb-1698908021549/node_modules/lib/rivet-sdk-js"
+    "@rivet-gg/common" "file:../../../../Library/Caches/Yarn/v6/npm-@rivet-gg-group-0.0.7-cc4197f6-419a-48b8-8edf-569046e361b1-1700572319554/node_modules/lib/rivet-sdk-js"
     tslib "^2.3.1"
 
 "@rivet-gg/identity@file:gen/api-identity":
@@ -2276,7 +2276,7 @@
     "@aws-sdk/util-user-agent-node" "3.80.0"
     "@aws-sdk/util-utf8-browser" "3.55.0"
     "@aws-sdk/util-utf8-node" "3.55.0"
-    "@rivet-gg/common" "file:../../../usr/local/share/.cache/yarn/v6/npm-@rivet-gg-identity-0.0.14-5719a5c0-38d2-414e-b250-4422b1103421-1698908021554/node_modules/lib/rivet-sdk-js"
+    "@rivet-gg/common" "file:../../../../Library/Caches/Yarn/v6/npm-@rivet-gg-identity-0.0.14-eff14275-7951-4895-b0f5-2754171af052-1700572319556/node_modules/lib/rivet-sdk-js"
     tslib "^2.3.1"
 
 "@rivet-gg/kv@file:gen/api-kv":
@@ -2311,7 +2311,7 @@
     "@aws-sdk/util-user-agent-node" "3.80.0"
     "@aws-sdk/util-utf8-browser" "3.55.0"
     "@aws-sdk/util-utf8-node" "3.55.0"
-    "@rivet-gg/common" "file:../../../usr/local/share/.cache/yarn/v6/npm-@rivet-gg-kv-0.0.8-56a8af72-3234-441e-a212-1e4dfc23b995-1698908021560/node_modules/lib/rivet-sdk-js"
+    "@rivet-gg/common" "file:../../../../Library/Caches/Yarn/v6/npm-@rivet-gg-kv-0.0.8-057a5c5a-423f-487e-9eaa-d3904a7a376d-1700572319558/node_modules/lib/rivet-sdk-js"
     tslib "^2.3.1"
 
 "@rivet-gg/party@file:gen/api-party":
@@ -2346,7 +2346,7 @@
     "@aws-sdk/util-user-agent-node" "3.80.0"
     "@aws-sdk/util-utf8-browser" "3.55.0"
     "@aws-sdk/util-utf8-node" "3.55.0"
-    "@rivet-gg/common" "file:../../../usr/local/share/.cache/yarn/v6/npm-@rivet-gg-party-0.0.7-d6786f77-51ea-499d-a943-dc92a9084cfe-1698908021566/node_modules/lib/rivet-sdk-js"
+    "@rivet-gg/common" "file:../../../../Library/Caches/Yarn/v6/npm-@rivet-gg-party-0.0.7-ce96564e-3d79-4882-9d2b-d3c38610df7f-1700572319559/node_modules/lib/rivet-sdk-js"
     tslib "^2.3.1"
 
 "@rivet-gg/portal@file:gen/api-portal":
@@ -2381,7 +2381,7 @@
     "@aws-sdk/util-user-agent-node" "3.80.0"
     "@aws-sdk/util-utf8-browser" "3.55.0"
     "@aws-sdk/util-utf8-node" "3.55.0"
-    "@rivet-gg/common" "file:../../../usr/local/share/.cache/yarn/v6/npm-@rivet-gg-portal-0.0.1-18bce561-e15b-48d7-b846-fb81ebeabfb3-1698908021572/node_modules/lib/rivet-sdk-js"
+    "@rivet-gg/common" "file:../../../../Library/Caches/Yarn/v6/npm-@rivet-gg-portal-0.0.1-194b913e-d2d6-4eeb-af97-e5ac80b70577-1700572319561/node_modules/lib/rivet-sdk-js"
     tslib "^2.3.1"
 
 "@rollup/plugin-babel@^5.2.0":
@@ -2447,6 +2447,38 @@
     lodash.isplainobject "^4.0.6"
     lodash.merge "^4.6.2"
     postcss-selector-parser "6.0.10"
+
+"@tanstack/query-core@5.8.3", "@tanstack/query-core@^5.8.3":
+  version "5.8.3"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.8.3.tgz#7c6d62721518223e8b27f1a0b5e9bd4e3bb7ecd8"
+  integrity sha512-SWFMFtcHfttLYif6pevnnMYnBvxKf3C+MHMH7bevyYfpXpTMsLB9O6nNGBdWSoPwnZRXFNyNeVZOw25Wmdasow==
+
+"@tanstack/query-devtools@^5.8.4":
+  version "5.8.4"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-devtools/-/query-devtools-5.8.4.tgz#88849bd27b7c8fa9034f95d24d58c3b82e182269"
+  integrity sha512-F1dRbITNt9tMUoM9WCH8WQ2c54116hv52m/PKK8ZiN/pO2wGVzTZtKuLanF8pFpwmNchjIixcMw/a57HY5ivcw==
+
+"@tanstack/query-persist-client-core@5.8.3":
+  version "5.8.3"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-persist-client-core/-/query-persist-client-core-5.8.3.tgz#d2adbfbacc47fd55dce92478b322925e953ac831"
+  integrity sha512-q9FR1HHMWWvL0R2XRTZ5jikXTrj6O7WmXqlouelhxc73ODMg5IiESav9MFKfWXbxHt1C8aKtu3OWYwdbI4K7xw==
+  dependencies:
+    "@tanstack/query-core" "5.8.3"
+
+"@tanstack/query-sync-storage-persister@^5.8.3":
+  version "5.8.3"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-sync-storage-persister/-/query-sync-storage-persister-5.8.3.tgz#80a2672f2b7b170b40806f80a88c63687c9f3300"
+  integrity sha512-RLkrF0QiMITg33agfXJALXyXrYNE4WxKbxczTQlkmsFSdE/NXgHBXvlz+38AQ1UaibzQNF8bhLMEKFx07qraug==
+  dependencies:
+    "@tanstack/query-core" "5.8.3"
+    "@tanstack/query-persist-client-core" "5.8.3"
+
+"@tanstack/react-query-persist-client@^5.8.4":
+  version "5.8.4"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query-persist-client/-/react-query-persist-client-5.8.4.tgz#9c187cd0fcea64d1df520ec9f2db6c5804936e18"
+  integrity sha512-al6FdBwT7+bzbl8T35xDxqAtfa0GBwQNukH2MarwNkutE/WLA2gMIdv1BD2wiGr6BTDzxl4IlZoktBlPFw3s0A==
+  dependencies:
+    "@tanstack/query-persist-client-core" "5.8.3"
 
 "@tokenizer/token@^0.3.0":
   version "0.3.0"
