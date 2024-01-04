@@ -59,7 +59,8 @@ module.exports = {
 				'.05': '.05rem'
 			},
 			zIndex: {
-				navigation: '4'
+				navigation: '4',
+				overlay: '6'
 			},
 			gridTemplateColumns: {
 				'sidebar-layout': '18rem calc(100vw - 18rem)'
