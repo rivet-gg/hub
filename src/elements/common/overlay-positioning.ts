@@ -366,6 +366,7 @@ export default class OverlayPositioning extends LitElement {
 	}
 
 	render() {
+		let contextElementBox = this.contextElement?.getBoundingClientRect();
 		let anchorX = this.getAdjustedAnchorX();
 		let anchorY = this.getAdjustedAnchorY();
 		let closeClasses = classMap({
@@ -376,7 +377,8 @@ export default class OverlayPositioning extends LitElement {
 			fade: this.fadeAnimation
 		});
 		let baseStyles = styleMap({
-			transform: `translate(${anchorX}px, ${anchorY}px)`
+			transform: `translate(${anchorX}px, ${anchorY}px)`,
+			'--overlay-size': contextElementBox ? `${contextElementBox?.width}px` : null
 		});
 		let animationStyles = styleMap({
 			transformOrigin: this.getTransformOrigin()
