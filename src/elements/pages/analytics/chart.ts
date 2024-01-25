@@ -119,10 +119,12 @@ export default class Chart extends LitElement {
 
 	playerCountByRegionChart(data: RivetEe.ee.cloud.PlayerCountByRegionDataSet) {
 		let playerCounts = data.playerCount.map((y, i) => ({ x: data.ts[i], y }));
-		let uniqueRegions = Array.from(new Set(data.regionNameId));
-		this.structuredDataSets = uniqueRegions.map(nameId => ({
+		let uniqueRegions = Array.from(
+			new Map(data.regionId.map((id, i) => [id, data.regionNameId[i]])).entries()
+		);
+		this.structuredDataSets = uniqueRegions.map(([id, nameId]) => ({
 			label: nameId,
-			data: playerCounts.filter((_, i) => data.regionNameId[i] == nameId)
+			data: playerCounts.filter((_, i) => data.regionId[i] == id)
 		}));
 
 		this.displayTitle = 'Players By Region';
@@ -131,10 +133,12 @@ export default class Chart extends LitElement {
 
 	playerCountByGameModeChart(data: RivetEe.ee.cloud.PlayerCountByGameModeDataSet) {
 		let playerCounts = data.playerCount.map((y, i) => ({ x: data.ts[i], y }));
-		let uniqueGameModes = Array.from(new Set(data.gameModeNameId));
-		this.structuredDataSets = uniqueGameModes.map(nameId => ({
-			label: nameId,
-			data: playerCounts.filter((_, i) => data.gameModeNameId[i] == nameId)
+		let uniqueGameModes = Array.from(
+			new Map(data.gameModeId.map((id, i) => [id, data.gameModeNameId[i]])).entries()
+		);
+		this.structuredDataSets = uniqueGameModes.map(([id, nameId]) => ({
+			label: `${nameId} (${id.slice(0, 4)})`,
+			data: playerCounts.filter((_, i) => data.gameModeId[i] == id)
 		}));
 
 		this.displayTitle = 'Players By Game Mode';
@@ -167,10 +171,12 @@ export default class Chart extends LitElement {
 
 	lobbyCountByRegionChart(data: RivetEe.ee.cloud.LobbyCountByRegionDataSet) {
 		let lobbyCounts = data.lobbyCount.map((y, i) => ({ x: data.ts[i], y }));
-		let uniqueRegions = Array.from(new Set(data.regionNameId));
-		this.structuredDataSets = uniqueRegions.map(nameId => ({
+		let uniqueRegions = Array.from(
+			new Map(data.regionId.map((id, i) => [id, data.regionNameId[i]])).entries()
+		);
+		this.structuredDataSets = uniqueRegions.map(([id, nameId]) => ({
 			label: nameId,
-			data: lobbyCounts.filter((_, i) => data.regionNameId[i] == nameId)
+			data: lobbyCounts.filter((_, i) => data.regionId[i] == id)
 		}));
 
 		this.displayTitle = 'Lobbies By Region';
@@ -179,10 +185,12 @@ export default class Chart extends LitElement {
 
 	lobbyCountByGameModeChart(data: RivetEe.ee.cloud.LobbyCountByGameModeDataSet) {
 		let lobbyCounts = data.lobbyCount.map((y, i) => ({ x: data.ts[i], y }));
-		let uniqueGameModes = Array.from(new Set(data.gameModeNameId));
-		this.structuredDataSets = uniqueGameModes.map(nameId => ({
-			label: nameId,
-			data: lobbyCounts.filter((_, i) => data.gameModeNameId[i] == nameId)
+		let uniqueGameModes = Array.from(
+			new Map(data.gameModeId.map((id, i) => [id, data.gameModeNameId[i]])).entries()
+		);
+		this.structuredDataSets = uniqueGameModes.map(([id, nameId]) => ({
+			label: `${nameId} (${id.slice(0, 4)})`,
+			data: lobbyCounts.filter((_, i) => data.gameModeId[i] == id)
 		}));
 
 		this.displayTitle = 'Lobbies By Game Mode';
