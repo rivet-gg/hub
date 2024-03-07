@@ -13,7 +13,8 @@
 		"format:check": "npx prettier --check .",
 		"lint": "eslint src/",
 		"lint:fix": "eslint --fix src/",
-		"preinstall": "sha256sum vendor/rivet-gg-api-ee.tgz; yarn cache clean"
+		"preinstall": "sha256sum vendor/rivet-gg-api-ee.tgz; yarn cache clean",
+		"test": "playwright test --ui"
 	},
 	"repository": {
 		"type": "git",
@@ -26,6 +27,7 @@
 	"devDependencies": {
 		"@aws-sdk/abort-controller": "3.78.0",
 		"@aws-sdk/protocol-http": "3.78.0",
+		"@playwright/test": "^1.42.1",
 		"@rivet-gg/api": "https://github.com/rivet-gg/rivet/raw/539f11efb856bc936576fe593fe051c0d7e1355d/sdks/typescript/archive.tgz",
 		"@rivet-gg/api-ee": "file:vendor/rivet-gg-api-ee.tgz",
 		"@rivet-gg/auth": "file:gen/api-auth",
@@ -39,6 +41,7 @@
 		"@types/bcryptjs": "^2.4.2",
 		"@types/d3": "^7.1.0",
 		"@types/escape-html": "^0.0.20",
+		"@types/node": "^20.11.25",
 		"@types/resize-observer-browser": "^0.1.4",
 		"@types/uuid": "^8.3.0",
 		"@typescript-eslint/eslint-plugin": "^5.37.0",

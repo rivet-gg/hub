@@ -19,6 +19,16 @@ yarn start
 
 This will open `http://localhost:5080` in your browser. By default, this will connect to Rivet's staging servers (https://staging2.gameinc.io).
 
+## Testing
+
+Run the following command:
+
+```bash
+yarn test
+```
+
+or use [VSCode extension](https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright).
+
 ## Developing with self-hosted backend
 
 > **Where do I self-host the backend?**
