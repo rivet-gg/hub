@@ -17,7 +17,6 @@ export const button = tv({
 		'disabled:opacity-60',
 		'aria-busy:cursor-default',
 		'group',
-		'w-full',
 		'text-center'
 	],
 	variants: {

@@ -6,9 +6,9 @@ export const identifyUser = (
 	identity?: Pick<Rivet.identity.common.Profile, 'displayName' | 'linkedAccounts' | 'avatarUrl'>
 ) => {
 	let properties = {
-		name: identity.displayName,
-		email: identity.linkedAccounts[0].email.email,
-		avatar: identity.avatarUrl
+		name: identity?.displayName,
+		email: identity?.linkedAccounts[0].email.email,
+		avatar: identity?.avatarUrl
 	};
 
 	posthog.identify(`user:${id}`, identity ? properties : undefined);
