@@ -5,6 +5,7 @@ import { cssify } from '../../utils/css';
 import global from '../../utils/global';
 import routes, { responses } from '../../routes';
 import styles from './access-token.scss';
+import { globalEventGroups, IdentityChangeEvent } from '../../utils/global-events';
 
 @customElement('page-access-token')
 export default class AccessTokenLink extends LitElement {
@@ -19,11 +20,33 @@ export default class AccessTokenLink extends LitElement {
 	@property({ type: Boolean })
 	finished: boolean = false;
 
+	/// === EVENTS ===
+	handleIdentityChange: (e: IdentityChangeEvent) => void;
+
 	firstUpdated(changedProperties: PropertyValues) {
 		super.firstUpdated(changedProperties);
 
 		if (global.currentIdentity?.isAdmin) this.finished = true;
 		else this.fetchData();
+	}
+
+	connectedCallback() {
+		super.connectedCallback();
+
+		this.handleIdentityChange = this.onIdentityChange.bind(this);
+		globalEventGroups.add('identity-change', this.handleIdentityChange);
+	}
+
+	disconnectedCallback() {
+		super.disconnectedCallback();
+
+		globalEventGroups.remove('identity-change', this.handleIdentityChange);
+	}
+
+	// Update render display when identity is updated
+	onIdentityChange() {
+		if (global.currentIdentity?.isAdmin) this.finished = true;
+		else throw new Error('Identity not made into admin');
 	}
 
 	async fetchData() {
