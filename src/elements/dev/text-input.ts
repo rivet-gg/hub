@@ -222,7 +222,7 @@ export default class TextInput extends LitElement {
 				// TODO: use tailwind variants
 				return html`
 					<input
-						class="w-full ring-1 text-charcole-950 ring-charcole-900 ring-inset border-none focus:ring-2 focus:border-none focus:ring-inset focus:ring-main-accent hover:ring-2 hover:ring-inset hover:ring-main-accent"
+						class="w-full text-xs ring-1 text-charcole-950 ring-charcole-900 ring-inset border-none focus:ring-2 focus:border-none focus:ring-inset focus:ring-main-accent hover:ring-2 hover:ring-inset hover:ring-main-accent"
 						type=${this.password ? 'password' : 'text'}
 						.placeholder=${this.placeholder}
 						.spellcheck=${this.spellcheck}

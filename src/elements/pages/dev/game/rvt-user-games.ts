@@ -46,9 +46,6 @@ export default class RvtUserGames extends LitElement {
 	@property({ type: String })
 	gameDisplayNameValue: string = null;
 
-	@property({ type: String })
-	gameNameIdValue = '';
-
 	gameGroupSelection: DropDownSelection<string> = null;
 
 	@property({ type: Boolean })
@@ -73,12 +70,8 @@ export default class RvtUserGames extends LitElement {
 			delay: timing.milliseconds(500),
 			cb: async () => {
 				let displayName = this.gameDisplayNameValue ?? '';
-				let nameId = this.gameNameIdValue.length
-					? this.gameNameIdValue
-					: utils.convertStringToId(displayName);
 
-				return await global.deprecatedApi.cloud.validateGame({
-					nameId,
+				return await global.api.cloud.games.games.validateGame({
 					displayName
 				});
 			},
@@ -167,12 +160,8 @@ export default class RvtUserGames extends LitElement {
 
 		try {
 			let displayName = this.gameDisplayNameValue;
-			let nameId = this.gameNameIdValue.length
-				? this.gameNameIdValue
-				: utils.convertStringToId(displayName);
 
-			let res = await global.deprecatedApi.cloud.createGame({
-				nameId,
+			let res = await global.api.cloud.games.games.createGame({
 				displayName,
 				developerGroupId: this.gameGroupSelection.value
 			});
@@ -216,12 +205,6 @@ export default class RvtUserGames extends LitElement {
 
 	gameDisplayNameInput(event: InputUpdateEvent) {
 		this.gameDisplayNameValue = event.value;
-
-		this.validateGameDebounce.trigger();
-	}
-
-	gameNameIdInput(event: InputUpdateEvent) {
-		this.gameNameIdValue = event.value;
 
 		this.validateGameDebounce.trigger();
 	}
@@ -294,7 +277,6 @@ export default class RvtUserGames extends LitElement {
 								${group.displayName}
 							</h2>
 						</div>
-						<!-- </a> -->
 						${when(
 							group.isDeveloper,
 							() =>
@@ -306,11 +288,19 @@ export default class RvtUserGames extends LitElement {
 										})}
 										>Analytics</rvt-button
 									>
+
+									<rvt-button
+										href=${routes.groupSettings.build({
+											groupId: group.groupId,
+											tab: 'billing'
+										})}
+										>Billing</rvt-button
+									>
 									<rvt-button href=${routes.groupSettings.build({ groupId: group.groupId })}
 										>Settings</rvt-button
 									>
 								</div>`
-							// Reenable when open beta
+							// TODO: Reenable when open beta
 							// () =>
 							// 	when(
 							// 		isOwner,
@@ -365,7 +355,6 @@ export default class RvtUserGames extends LitElement {
 
 		let displayName = this.gameDisplayNameValue;
 		let displayNameErrors = this.gameValidationErrors.findFormatted('display-name');
-		let nameIdErrors = this.gameValidationErrors.findFormatted('name-id');
 
 		return html` <drop-down-modal
 			id="create-game-modal"
@@ -395,24 +384,10 @@ export default class RvtUserGames extends LitElement {
 								<e-svg src="regular/circle-exclamation"></e-svg> ${displayNameErrors[0]}</li>
 							</span>`
 					)}
-					<h2>Game Name ID</h2>
-					<text-input
-						light
-						.filter=${(v: string) => v.replace(/[\s\-]+/g, '-').toLowerCase()}
-						placeholder=${displayName
-							? utils.convertStringToId(displayName)
-							: 'Enter a name id...'}
-						@input=${this.gameNameIdInput.bind(this)}
-					></text-input>
-					${when(
-						nameIdErrors.length > 0,
-						() => html`
-							<span id="create-game-error">
-								<e-svg src="regular/circle-exclamation"></e-svg> ${nameIdErrors[0]}</li>
-							</span>`
-					)}
 				</div>
-				<p class="content">We’ll walk you though the details of editing your game later.</p>
+				<p class="content text-center">
+					We'll walk you though the details of editing your game later.
+				</p>
 				<rvt-button
 					class="mt-4"
 					@click=${this.createGame.bind(this)}

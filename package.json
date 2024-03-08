@@ -26,7 +26,7 @@
 	"devDependencies": {
 		"@aws-sdk/abort-controller": "3.78.0",
 		"@aws-sdk/protocol-http": "3.78.0",
-		"@rivet-gg/api": "https://github.com/rivet-gg/rivet/raw/539f11efb856bc936576fe593fe051c0d7e1355d/sdks/typescript/archive.tgz",
+		"@rivet-gg/api": "https://github.com/rivet-gg/rivet/raw/c2ed02c5f2edae0cdb012f12ef2911f8c1a1c7f2/sdks/full/typescript/archive.tgz",
 		"@rivet-gg/api-ee": "file:vendor/rivet-gg-api-ee.tgz",
 		"@rivet-gg/auth": "file:gen/api-auth",
 		"@rivet-gg/chat": "file:gen/api-chat",

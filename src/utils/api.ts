@@ -120,7 +120,9 @@ async function customFetcher<R = unknown>(
 			headers,
 			body,
 			signal: controller.signal,
-			// IMPORTANT: Only changed part
+			// NOTE: This was originally the only change made to the stock Fern fetcher. In newer versions,
+			// Fern sets `credentials` to "include" so this is unnecessary but it is good to keep this custom
+			// fetcher if future changes are required.
 			credentials: 'include'
 		});
 
