@@ -175,6 +175,7 @@ export default class RegisterPanel extends LitElement {
 				// Refresh token
 				await global.authManager.fetchToken(true);
 				this.closeRegisterPanel();
+				this.resetRegister();
 			} else if (res.status == api.auth.CompleteStatus.LINKED_ACCOUNT_ADDED) {
 				this.codeAreaClose();
 
@@ -185,6 +186,7 @@ export default class RegisterPanel extends LitElement {
 				// Wait for update
 				await globalEventGroups.await('identity-change');
 				this.closeRegisterPanel();
+				this.resetRegister();
 			} else if (res.status == api.auth.CompleteStatus.ALREADY_COMPLETE) {
 				this.codeError = 'This verification session has already been completed.';
 			} else if (res.status == api.auth.CompleteStatus.EXPIRED) {
