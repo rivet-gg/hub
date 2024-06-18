@@ -12,7 +12,7 @@ const Root = ({ children }: RootProps) => {
 };
 
 const Main = ({ children }: RootProps) => {
-  return <main className="bg-muted flex flex-1 flex-col">{children}</main>;
+  return <main className="bg-background flex flex-1 flex-col">{children}</main>;
 };
 
 const Header = () => {
@@ -21,7 +21,7 @@ const Header = () => {
 
 const Footer = () => {
   return (
-    <footer className="text-muted-foreground bg-muted p-4 text-center text-sm">
+    <footer className="text-muted-foreground bg-background p-4 text-center text-sm">
       <div className="container">
         <Link href="https://old.rivet.gg" target="_blank" rel="noreferrer">
           Old Version

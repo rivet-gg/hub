@@ -1,28 +1,10 @@
 import { ErrorComponent } from "@/components/error-component";
-import { GameBackendCallDetails } from "@/domains/game/components/game-backend/game-backend-call-details";
 import { GameBackendListEventsPreview } from "@/domains/game/components/game-backend/game-backend-list-events-preview";
 import {
   gameBackendProjectEnvEventsQueryOptions,
   gameBackendProjectQueryOptions,
 } from "@/domains/game/queries";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-  Badge,
-  Button,
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  Dd,
-  Dl,
-  Dt,
-  Flex,
-  LogsView,
-  SmallText,
-} from "@rivet-gg/components";
+import { Card, CardContent, CardHeader, CardTitle } from "@rivet-gg/components";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import {
   type ErrorComponentProps,

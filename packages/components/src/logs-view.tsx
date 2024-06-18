@@ -1,4 +1,7 @@
-import { faDownToLine } from "@fortawesome/pro-solid-svg-icons";
+import {
+  faDownToLine,
+  faExclamationTriangle,
+} from "@fortawesome/pro-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { Virtualizer } from "@tanstack/react-virtual";
 import {
@@ -42,25 +45,37 @@ export function Sidebar({ children }: PropsWithChildren) {
   return <div className="flex flex-col gap-2">{children}</div>;
 }
 
+type Line = string | { type: "log" | "error"; message: string };
+
 interface LogRowProps {
   timestamp?: string;
-  line?: string;
+  line?: Line;
   isFirst?: boolean;
 }
 
 function LogRow({ timestamp, line, isFirst }: LogRowProps) {
+  const isError = typeof line === "object" && line.type === "error";
+
   return (
-    <div className="text-nowrap">
+    <div className={cn("text-nowrap p-0.5", isError && "bg-destructive/10")}>
       {isFirst ? (
         <span className="font-mono text-sm">
           Only last few lines are visible here. To see all logs, export them.
         </span>
       ) : (
         <>
+          {isError ? (
+            <FontAwesomeIcon
+              className="text-destructive mr-2"
+              icon={faExclamationTriangle}
+            />
+          ) : null}
           <span className="text-muted-foreground my-1 mr-2 font-mono text-sm">
             {timestamp}
           </span>
-          <span className="my-1 font-mono text-sm">{line ? line : null}</span>
+          <span className="my-1 font-mono text-sm">
+            {typeof line === "string" ? line : line?.message}
+          </span>
         </>
       )}
     </div>
@@ -69,7 +84,7 @@ function LogRow({ timestamp, line, isFirst }: LogRowProps) {
 
 interface LogsViewProps {
   timestamps: string[];
-  lines: string[];
+  lines: Line[];
   sidebar?: ReactNode;
   showFollowToggle?: boolean;
   showTurncatedLogsInfo?: boolean;
@@ -146,7 +161,7 @@ export function LogsView({
               }
               paddingStart={8}
               paddingEnd={8}
-              estimateSize={() => 24}
+              estimateSize={() => 28}
               className="w-full"
               row={<LogRow />}
             />
