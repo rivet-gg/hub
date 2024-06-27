@@ -18,21 +18,19 @@ export interface AuthContext {
 const AuthContext = createContext<AuthContext | null>(null);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const { isSuccess, refetch: refetchSession } = useSuspenseQuery(
-    identityTokenQueryOptions(),
-  );
-  const { data: profile, refetch: refetchProfile } = useSuspenseQuery(
-    selfProfileQueryOptions({ enabled: isSuccess }),
-  );
+  const {
+    data: profile,
+    isSuccess,
+    refetch: refetchProfile,
+  } = useSuspenseQuery(selfProfileQueryOptions());
 
   const { mutate: logout } = useLogoutMutation();
 
   useSuspenseQuery(bootstrapQueryOptions({ enabled: isSuccess }));
 
   const refreshToken = useCallback(async () => {
-    await refetchSession();
     await refetchProfile();
-  }, [refetchSession, refetchProfile]);
+  }, [refetchProfile]);
 
   return (
     <AuthContext.Provider value={{ profile, refreshToken, logout }}>

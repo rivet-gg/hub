@@ -1,12 +1,15 @@
+import { timing } from "@rivet-gg/components";
 import { queryOptions } from "@tanstack/react-query";
-import { rivetClient } from "../../../queries/global";
+import { rivetClient, rivetClientTokeneless } from "../../../queries/global";
 import { getMetaWatchIndex } from "../../../queries/utils";
 
 export const identityTokenQueryOptions = () => {
   return queryOptions({
     queryKey: ["identityToken"],
+    staleTime: timing.minutes(15),
+    gcTime: timing.minutes(15),
     queryFn: () =>
-      rivetClient.auth.tokens.refreshIdentityToken({ logout: false }),
+      rivetClientTokeneless.auth.tokens.refreshIdentityToken({ logout: false }),
   });
 };
 

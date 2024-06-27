@@ -1,20 +1,36 @@
-import { RivetClient } from "@rivet-gg/api";
+import { type Rivet, RivetClient } from "@rivet-gg/api";
 import { RivetClient as RivetEeClient } from "@rivet-gg/api-ee";
 import { getConfig, toast } from "@rivet-gg/components";
 import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
 import { MutationCache, QueryCache, QueryClient } from "@tanstack/react-query";
 import superjson from "superjson";
 import { identityTokenQueryOptions } from "../domains/user/queries";
-import { OuterbaseError } from "./types";
 import { withQueryWatch } from "./watch";
 
-const opts: RivetClient.Options = {
+const clientOptions: RivetClient.Options = {
   environment: getConfig().apiUrl,
-  fetcher: async (args) => {
-    const identity = args.url.includes("/auth/tokens/identity")
-      ? undefined
-      : await queryClient.fetchQuery(identityTokenQueryOptions());
+  token: async () => {
+    const tokenCache = queryClient
+      .getQueryCache()
+      .find<Rivet.auth.RefreshIdentityTokenResponse>(
+        identityTokenQueryOptions(),
+      );
 
+    if (tokenCache?.state.status === "success" && tokenCache.state.data) {
+      return tokenCache.state.data.token as string;
+    }
+
+    if (tokenCache?.state.status === "pending") {
+      const token = (await tokenCache.promise)?.token;
+
+      if (token) {
+        return token;
+      }
+    }
+
+    return (await queryClient.fetchQuery(identityTokenQueryOptions())).token;
+  },
+  fetcher: async (args) => {
     const url = new URL(args.url);
     for (const [key, value] of Object.entries(args.queryParameters || {})) {
       url.searchParams.append(key, value as string);
@@ -26,7 +42,7 @@ const opts: RivetClient.Options = {
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
-          ...(identity ? { Authorization: `Bearer ${identity.token}` } : {}),
+          ...args.headers,
         },
         body: args.method === "GET" ? undefined : JSON.stringify(args.body),
       });
@@ -61,8 +77,11 @@ const opts: RivetClient.Options = {
   },
 };
 
-export const rivetClient = new RivetClient(opts);
-export const rivetEeClient = new RivetEeClient(opts);
+export const rivetClientTokeneless = new RivetClient({
+  fetcher: clientOptions.fetcher,
+});
+export const rivetClient = new RivetClient(clientOptions);
+export const rivetEeClient = new RivetEeClient(clientOptions);
 
 const queryCache = new QueryCache({
   ...withQueryWatch(),

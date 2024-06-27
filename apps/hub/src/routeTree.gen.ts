@@ -570,3 +570,204 @@ export const routeTree = rootRoute.addChildren({
 })
 
 /* prettier-ignore-end */
+
+/* ROUTE_MANIFEST_START
+{
+  "routes": {
+    "__root__": {
+      "filePath": "__root.tsx",
+      "children": [
+        "/_authenticated"
+      ]
+    },
+    "/_authenticated": {
+      "filePath": "_authenticated.tsx",
+      "children": [
+        "/_authenticated/_layout",
+        "/_authenticated/invite/$inviteCode",
+        "/_authenticated/devices/link/$token"
+      ]
+    },
+    "/_authenticated/_layout": {
+      "filePath": "_authenticated/_layout.tsx",
+      "parent": "/_authenticated",
+      "children": [
+        "/_authenticated/_layout/my-profile",
+        "/_authenticated/_layout/",
+        "/_authenticated/_layout/games/$gameId",
+        "/_authenticated/_layout/teams/$groupId",
+        "/_authenticated/_layout/games/$gameId/namespaces/$namespaceId"
+      ]
+    },
+    "/_authenticated/_layout/my-profile": {
+      "filePath": "_authenticated/_layout/my-profile.tsx",
+      "parent": "/_authenticated/_layout"
+    },
+    "/_authenticated/invite/$inviteCode": {
+      "filePath": "_authenticated/invite.$inviteCode.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/_layout/": {
+      "filePath": "_authenticated/_layout/index.tsx",
+      "parent": "/_authenticated/_layout"
+    },
+    "/_authenticated/_layout/games/$gameId": {
+      "filePath": "_authenticated/_layout/games/$gameId.tsx",
+      "parent": "/_authenticated/_layout",
+      "children": [
+        "/_authenticated/_layout/games/$gameId/backend",
+        "/_authenticated/_layout/games/$gameId/billing",
+        "/_authenticated/_layout/games/$gameId/settings",
+        "/_authenticated/_layout/games/$gameId/tokens",
+        "/_authenticated/_layout/games/$gameId/"
+      ]
+    },
+    "/_authenticated/_layout/teams/$groupId": {
+      "filePath": "_authenticated/_layout/teams/$groupId.tsx",
+      "parent": "/_authenticated/_layout",
+      "children": [
+        "/_authenticated/_layout/teams/$groupId/billing",
+        "/_authenticated/_layout/teams/$groupId/members",
+        "/_authenticated/_layout/teams/$groupId/settings",
+        "/_authenticated/_layout/teams/$groupId/"
+      ]
+    },
+    "/_authenticated/devices/link/$token": {
+      "filePath": "_authenticated/devices.link.$token.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/_layout/games/$gameId/backend": {
+      "filePath": "_authenticated/_layout/games/$gameId/backend.tsx",
+      "parent": "/_authenticated/_layout/games/$gameId",
+      "children": [
+        "/_authenticated/_layout/games/$gameId/backend/$environmentId",
+        "/_authenticated/_layout/games/$gameId/backend/"
+      ]
+    },
+    "/_authenticated/_layout/games/$gameId/billing": {
+      "filePath": "_authenticated/_layout/games/$gameId/billing.tsx",
+      "parent": "/_authenticated/_layout/games/$gameId"
+    },
+    "/_authenticated/_layout/games/$gameId/settings": {
+      "filePath": "_authenticated/_layout/games/$gameId/settings.tsx",
+      "parent": "/_authenticated/_layout/games/$gameId",
+      "children": [
+        "/_authenticated/_layout/games/$gameId/settings/"
+      ]
+    },
+    "/_authenticated/_layout/games/$gameId/tokens": {
+      "filePath": "_authenticated/_layout/games/$gameId/tokens.tsx",
+      "parent": "/_authenticated/_layout/games/$gameId"
+    },
+    "/_authenticated/_layout/teams/$groupId/billing": {
+      "filePath": "_authenticated/_layout/teams/$groupId/billing.tsx",
+      "parent": "/_authenticated/_layout/teams/$groupId"
+    },
+    "/_authenticated/_layout/teams/$groupId/members": {
+      "filePath": "_authenticated/_layout/teams/$groupId/members.tsx",
+      "parent": "/_authenticated/_layout/teams/$groupId"
+    },
+    "/_authenticated/_layout/teams/$groupId/settings": {
+      "filePath": "_authenticated/_layout/teams/$groupId/settings.tsx",
+      "parent": "/_authenticated/_layout/teams/$groupId",
+      "children": [
+        "/_authenticated/_layout/teams/$groupId/settings/"
+      ]
+    },
+    "/_authenticated/_layout/games/$gameId/": {
+      "filePath": "_authenticated/_layout/games/$gameId/index.tsx",
+      "parent": "/_authenticated/_layout/games/$gameId"
+    },
+    "/_authenticated/_layout/teams/$groupId/": {
+      "filePath": "_authenticated/_layout/teams/$groupId/index.tsx",
+      "parent": "/_authenticated/_layout/teams/$groupId"
+    },
+    "/_authenticated/_layout/games/$gameId/backend/$environmentId": {
+      "filePath": "_authenticated/_layout/games/$gameId/backend/$environmentId.tsx",
+      "parent": "/_authenticated/_layout/games/$gameId/backend",
+      "children": [
+        "/_authenticated/_layout/games/$gameId/backend/$environmentId/logs",
+        "/_authenticated/_layout/games/$gameId/backend/$environmentId/variables",
+        "/_authenticated/_layout/games/$gameId/backend/$environmentId/"
+      ]
+    },
+    "/_authenticated/_layout/games/$gameId/namespaces/$namespaceId": {
+      "filePath": "_authenticated/_layout/games/$gameId_/namespaces/$namespaceId.tsx",
+      "parent": "/_authenticated/_layout",
+      "children": [
+        "/_authenticated/_layout/games/$gameId/namespaces/$namespaceId/cdn",
+        "/_authenticated/_layout/games/$gameId/namespaces/$namespaceId/lobbies",
+        "/_authenticated/_layout/games/$gameId/namespaces/$namespaceId/matchmaker",
+        "/_authenticated/_layout/games/$gameId/namespaces/$namespaceId/tokens",
+        "/_authenticated/_layout/games/$gameId/namespaces/$namespaceId/versions",
+        "/_authenticated/_layout/games/$gameId/namespaces/$namespaceId/"
+      ]
+    },
+    "/_authenticated/_layout/games/$gameId/backend/": {
+      "filePath": "_authenticated/_layout/games/$gameId/backend/index.tsx",
+      "parent": "/_authenticated/_layout/games/$gameId/backend"
+    },
+    "/_authenticated/_layout/games/$gameId/settings/": {
+      "filePath": "_authenticated/_layout/games/$gameId/settings/index.tsx",
+      "parent": "/_authenticated/_layout/games/$gameId/settings"
+    },
+    "/_authenticated/_layout/teams/$groupId/settings/": {
+      "filePath": "_authenticated/_layout/teams/$groupId/settings/index.tsx",
+      "parent": "/_authenticated/_layout/teams/$groupId/settings"
+    },
+    "/_authenticated/_layout/games/$gameId/backend/$environmentId/logs": {
+      "filePath": "_authenticated/_layout/games/$gameId/backend/$environmentId/logs.tsx",
+      "parent": "/_authenticated/_layout/games/$gameId/backend/$environmentId"
+    },
+    "/_authenticated/_layout/games/$gameId/backend/$environmentId/variables": {
+      "filePath": "_authenticated/_layout/games/$gameId/backend/$environmentId/variables.tsx",
+      "parent": "/_authenticated/_layout/games/$gameId/backend/$environmentId"
+    },
+    "/_authenticated/_layout/games/$gameId/namespaces/$namespaceId/cdn": {
+      "filePath": "_authenticated/_layout/games/$gameId_/namespaces/$namespaceId/cdn.tsx",
+      "parent": "/_authenticated/_layout/games/$gameId/namespaces/$namespaceId"
+    },
+    "/_authenticated/_layout/games/$gameId/namespaces/$namespaceId/lobbies": {
+      "filePath": "_authenticated/_layout/games/$gameId_/namespaces/$namespaceId/lobbies.tsx",
+      "parent": "/_authenticated/_layout/games/$gameId/namespaces/$namespaceId",
+      "children": [
+        "/_authenticated/_layout/games/$gameId/namespaces/$namespaceId/lobbies/logs",
+        "/_authenticated/_layout/games/$gameId/namespaces/$namespaceId/lobbies/settings",
+        "/_authenticated/_layout/games/$gameId/namespaces/$namespaceId/lobbies/"
+      ]
+    },
+    "/_authenticated/_layout/games/$gameId/namespaces/$namespaceId/matchmaker": {
+      "filePath": "_authenticated/_layout/games/$gameId_/namespaces/$namespaceId/matchmaker.tsx",
+      "parent": "/_authenticated/_layout/games/$gameId/namespaces/$namespaceId"
+    },
+    "/_authenticated/_layout/games/$gameId/namespaces/$namespaceId/tokens": {
+      "filePath": "_authenticated/_layout/games/$gameId_/namespaces/$namespaceId/tokens.tsx",
+      "parent": "/_authenticated/_layout/games/$gameId/namespaces/$namespaceId"
+    },
+    "/_authenticated/_layout/games/$gameId/namespaces/$namespaceId/versions": {
+      "filePath": "_authenticated/_layout/games/$gameId_/namespaces/$namespaceId/versions.tsx",
+      "parent": "/_authenticated/_layout/games/$gameId/namespaces/$namespaceId"
+    },
+    "/_authenticated/_layout/games/$gameId/backend/$environmentId/": {
+      "filePath": "_authenticated/_layout/games/$gameId/backend/$environmentId/index.tsx",
+      "parent": "/_authenticated/_layout/games/$gameId/backend/$environmentId"
+    },
+    "/_authenticated/_layout/games/$gameId/namespaces/$namespaceId/": {
+      "filePath": "_authenticated/_layout/games/$gameId_/namespaces/$namespaceId/index.tsx",
+      "parent": "/_authenticated/_layout/games/$gameId/namespaces/$namespaceId"
+    },
+    "/_authenticated/_layout/games/$gameId/namespaces/$namespaceId/lobbies/logs": {
+      "filePath": "_authenticated/_layout/games/$gameId_/namespaces/$namespaceId/lobbies/logs.tsx",
+      "parent": "/_authenticated/_layout/games/$gameId/namespaces/$namespaceId/lobbies"
+    },
+    "/_authenticated/_layout/games/$gameId/namespaces/$namespaceId/lobbies/settings": {
+      "filePath": "_authenticated/_layout/games/$gameId_/namespaces/$namespaceId/lobbies/settings.tsx",
+      "parent": "/_authenticated/_layout/games/$gameId/namespaces/$namespaceId/lobbies"
+    },
+    "/_authenticated/_layout/games/$gameId/namespaces/$namespaceId/lobbies/": {
+      "filePath": "_authenticated/_layout/games/$gameId_/namespaces/$namespaceId/lobbies/index.tsx",
+      "parent": "/_authenticated/_layout/games/$gameId/namespaces/$namespaceId/lobbies"
+    }
+  }
+}
+ROUTE_MANIFEST_END */
