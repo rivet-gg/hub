@@ -1,4 +1,4 @@
-import { bootstrapOpenGbQueryOptions } from "@/domains/auth/queries/bootstrap";
+import { bootstrapBackendQueryOptions } from "@/domains/auth/queries/bootstrap";
 import { gameBackendProjectQueryOptions } from "@/domains/game/queries";
 import { Link } from "@rivet-gg/components";
 import { useSuspenseQuery } from "@tanstack/react-query";
@@ -13,7 +13,7 @@ export function GameBackendDeploymentLink({
   environmentNameId,
 }: GameBackendDeploymentLinkProps) {
   const { data: backendDomain } = useSuspenseQuery(
-    bootstrapOpenGbQueryOptions(),
+    bootstrapBackendQueryOptions(),
   );
   const {
     data: { project },

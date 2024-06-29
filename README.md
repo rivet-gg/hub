@@ -31,7 +31,7 @@ This will open `http://localhost:5080` in your browser. By default, this will co
 
 ## Environment variables configuration
 
-1. Copy `.env.example` to `.env.yarn` and fill appropiate variables.
+1. Copy `.env.example` to `.env.yarn` and fill appropriate variables.
 2. Copy `apps/hub/.env.example` to `apps/hub/.env.yarn` and change variables if needed.
 
 ## Developing with self-hosted backend
@@ -60,7 +60,7 @@ For example, `identity.getProfile` returns a URL to the hub profile in `identity
 
 **`rivet.api.hub_origin_regex`** (default: `^https://hub\\.{main domain}$`)
 
-This configurs the CORS origin regex. This allows you to secure where requests can come from to your hub.
+This configures the CORS origin regex. This allows you to secure where requests can come from to your hub.
 
 If you are running your own cluster for development, consider updating the CORS rules to include `localhost` similar to below.
 

@@ -11,7 +11,7 @@ export const bootstrapQueryOptions = ({
   });
 };
 
-export const bootstrapOpenGbQueryOptions = () => {
+export const bootstrapBackendQueryOptions = () => {
   return queryOptions({
     ...bootstrapQueryOptions(),
     select: (data) =>
