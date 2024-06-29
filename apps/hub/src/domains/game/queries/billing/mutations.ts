@@ -37,7 +37,8 @@ export const useCreateBillingPortalSessionMutation = () => {
         intent,
       }),
     onSuccess: async (data) => {
-      window.open(data.stripeSessionUrl, "_blank");
+      const win = window.open();
+      win?.location.assign(data.stripeSessionUrl);
     },
   });
 };
