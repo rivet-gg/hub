@@ -6,12 +6,13 @@ import {
   Dd,
   Dl,
   Dt,
-  LogsView,
+  Separator,
   Text,
 } from "@rivet-gg/components";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { gameBackendProjectEnvEventQueryOptions } from "../../queries";
 import { GameBackendCallDetails } from "./game-backend-call-details";
+import { GameBackendEventSummaryLogs } from "./game-backend-event-summary-logs";
 
 interface GameBackendEventSummaryProps {
   eventId: string;
@@ -50,7 +51,7 @@ export function GameBackendEventSummary({
             <Dt>Script</Dt>
             <Dd>{data.backendCall.scriptName}</Dd>
           </Dl>
-          <Accordion type="single" collapsible>
+          <Accordion type="single" collapsible className="mb-4">
             <AccordionItem value="item-1">
               <AccordionTrigger>Advanced</AccordionTrigger>
               <AccordionContent>
@@ -60,14 +61,12 @@ export function GameBackendEventSummary({
           </Accordion>
         </>
       ) : (
-        <GameBackendCallDetails {...data} />
+        <>
+          <GameBackendCallDetails {...data} />
+          <Separator my="4" />
+        </>
       )}
-      <LogsView
-        timestamps={data.logTimestamps}
-        lines={data.logs.map((log) => log.message.join("\n"))}
-        showFollowToggle={false}
-        empty={<p>No logs available.</p>}
-      />
+      <GameBackendEventSummaryLogs {...data} />
     </>
   );
 }

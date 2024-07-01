@@ -39,6 +39,15 @@ export const BackendEvent = z
         timestamp: z.string(),
       }),
     ),
+    exceptions: z
+      .array(
+        z.object({
+          stack: z.string(),
+          message: z.string(),
+          timestamp: z.string(),
+        }),
+      )
+      .optional(),
     outcome: z.string(),
     scriptName: z.string(),
     scriptVersion: z.object({
@@ -58,9 +67,22 @@ export const BackendEvent = z
           pathname: url.pathname,
         },
       },
-      logTimestamps: data.logs.map((log) =>
-        new Date(+log.timestamp).toISOString(),
-      ),
+      logTimestamps: [
+        ...data.logs.map((log) => new Date(+log.timestamp).toISOString()),
+        ...(data.exceptions?.map((log) =>
+          new Date(+log.timestamp).toISOString(),
+        ) ?? []),
+      ],
+      logs: [
+        ...data.logs.map((log) => ({
+          type: "log" as const,
+          message: log.message.join("\n"),
+        })),
+        ...(data.exceptions?.map((log) => ({
+          type: "error" as const,
+          message: [log.message, log.stack].join("\n"),
+        })) ?? []),
+      ],
     };
   });
 
