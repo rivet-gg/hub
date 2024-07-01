@@ -10,9 +10,9 @@ import {
   SheetTrigger,
 } from "@rivet-gg/components";
 import { Link } from "@tanstack/react-router";
-import { Breadcrumbs } from "./breadcrumbs/breadcrumbs";
-import { MobileBreadcrumbs } from "./breadcrumbs/mobile-breadcrumbs";
-import { CommandPanel } from "./command-panel";
+import { Breadcrumbs } from "../breadcrumbs/breadcrumbs";
+import { MobileBreadcrumbs } from "../breadcrumbs/mobile-breadcrumbs";
+import { CommandPanel } from "../command-panel";
 import { HeaderRouteLoader } from "./header-route-loader";
 import { HeaderSubNav } from "./header-sub-nav";
 import { MobileHeaderSubNav } from "./mobile-header-sub-nav";

@@ -1,18 +1,7 @@
-import * as Layout from "@/domains/game/layouts/game-backend-env-layout";
 import { Outlet, createFileRoute } from "@tanstack/react-router";
 
 function GameBackendEnvIdView() {
-  const { gameId, environmentId } = Route.useParams();
-  const { projectId } = Route.useRouteContext();
-  return (
-    <Layout.Root
-      gameId={gameId}
-      environmentId={environmentId}
-      projectId={projectId}
-    >
-      <Outlet />
-    </Layout.Root>
-  );
+  return <Outlet />;
 }
 
 export const Route = createFileRoute(

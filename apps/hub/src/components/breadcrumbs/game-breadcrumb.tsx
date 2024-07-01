@@ -3,7 +3,7 @@ import { gameQueryOptions } from "@/domains/game/queries";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import { Fragment, useContext } from "react";
-import { NavItem } from "../nav-item";
+import { NavItem } from "../header/nav-item";
 import { GroupBreadcrumb } from "./group-breadcrumb";
 import { MobileBreadcrumbsContext } from "./mobile-breadcrumbs";
 import { Separator } from "./separator";

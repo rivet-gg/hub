@@ -1,8 +1,13 @@
 import { useAuth } from "@/domains/auth/contexts/auth";
 import { noop } from "@/lib/utils";
 import { Skeleton, cn } from "@rivet-gg/components";
-import { CatchBoundary, useMatchRoute } from "@tanstack/react-router";
+import {
+  CatchBoundary,
+  useMatchRoute,
+  useRouteContext,
+} from "@tanstack/react-router";
 import { Suspense, useContext } from "react";
+import { BackendEnvironmentBreadcrumb } from "./backend-environment-breadcrumb";
 import { GameBreadcrumb } from "./game-breadcrumb";
 import { GroupBreadcrumb } from "./group-breadcrumb";
 import { MobileBreadcrumbsContext } from "./mobile-breadcrumbs";
@@ -14,6 +19,20 @@ function Content() {
   const { profile } = useAuth();
   if (!profile?.identity.isRegistered) {
     return null;
+  }
+
+  const backendMatch = matchRoute({
+    to: "/games/$gameId/backend/$environmentId",
+    fuzzy: true,
+  }) as false | { gameId: string; environmentId: string };
+
+  if (backendMatch) {
+    return (
+      <BackendEnvironmentBreadcrumb
+        environmentId={backendMatch.environmentId}
+        gameId={backendMatch.gameId}
+      />
+    );
   }
 
   const groupMatch = matchRoute({ to: "/teams/$groupId", fuzzy: true }) as

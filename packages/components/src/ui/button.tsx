@@ -46,6 +46,7 @@ export interface ButtonProps
     React.ComponentPropsWithoutRef<"button"> {
   asChild?: boolean;
   isLoading?: boolean;
+  startIcon?: React.ReactElement;
   endIcon?: React.ReactElement;
 }
 
@@ -56,6 +57,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       className,
       variant,
       size,
+      startIcon,
       isLoading,
       endIcon,
       disabled,
@@ -81,6 +83,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             icon={faSpinnerThird}
             className={cn("h-4 w-4 animate-spin", size !== "icon" && "mr-2")}
           />
+        ) : startIcon ? (
+          React.cloneElement(startIcon, { className: "mr-2" })
         ) : null}
         {size === "icon" && isLoading ? null : (
           <Slottable>{children}</Slottable>

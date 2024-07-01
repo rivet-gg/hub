@@ -1,4 +1,4 @@
-import { MobileBreadcrumbsContext } from "./breadcrumbs/mobile-breadcrumbs";
+import { MobileBreadcrumbsContext } from "../breadcrumbs/mobile-breadcrumbs";
 import { HeaderSubNav } from "./header-sub-nav";
 
 export function MobileHeaderSubNav() {

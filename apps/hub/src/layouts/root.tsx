@@ -1,7 +1,6 @@
-import { Feedback } from "@/domains/auth/components/feedback";
 import { Link } from "@rivet-gg/components";
 import type { ReactNode } from "react";
-import { Header as UiHeader } from "../components/header";
+import { Header as UiHeader } from "../components/header/header";
 
 interface RootProps {
   children: ReactNode;
