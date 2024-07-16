@@ -20,6 +20,7 @@ export * from "./datepicker";
 export * from "./ranged-progress-bar";
 export * from "./animated-currency";
 export * from "./live-badge";
+export * from "./json-code";
 export * from "./ui/typography";
 export * from "./ui/skeleton";
 export * from "./ui/sheet";
