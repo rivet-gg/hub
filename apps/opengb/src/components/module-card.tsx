@@ -96,7 +96,6 @@ function DeleteModuleButton({
       content={content}
       trigger={
         <div>
-          {" "}
           <Button
             size="icon"
             type="button"
