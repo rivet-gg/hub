@@ -1,16 +1,25 @@
-import { json } from "@codemirror/lang-json";
+import { json, jsonParseLinter } from "@codemirror/lang-json";
+import { linter } from "@codemirror/lint";
 import { githubDark } from "@uiw/codemirror-theme-github";
-import ReactCodeMirror from "@uiw/react-codemirror";
+import ReactCodeMirror, {
+  type ReactCodeMirrorProps,
+} from "@uiw/react-codemirror";
 import { CodeMirrorContainer } from "./code-mirror-container";
 
-export const JsonCode = ({ value }: { value: unknown }) => {
+interface JsonCodeProps extends ReactCodeMirrorProps {}
+
+export const JsonCode = ({
+  value,
+  extensions = [],
+  ...props
+}: JsonCodeProps) => {
   return (
     <CodeMirrorContainer>
       <ReactCodeMirror
-        readOnly
-        extensions={[json()]}
+        {...props}
+        extensions={[json(), linter(jsonParseLinter()), ...extensions]}
         theme={githubDark}
-        value={JSON.stringify(value, null, 2)}
+        value={value}
       />
     </CodeMirrorContainer>
   );
