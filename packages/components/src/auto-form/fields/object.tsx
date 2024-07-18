@@ -1,3 +1,5 @@
+import { useFormContext } from "react-hook-form";
+import * as z from "zod";
 import {
   Accordion,
   AccordionContent,
@@ -5,9 +7,9 @@ import {
   AccordionTrigger,
 } from "../../ui/accordion";
 import { FormField } from "../../ui/form";
-import { type useForm, useFormContext } from "react-hook-form";
-import * as z from "zod";
+import { MutedText } from "../../ui/typography";
 import { DEFAULT_ZOD_HANDLERS, INPUT_COMPONENTS } from "../config";
+import resolveDependencies from "../dependencies";
 import type { Dependency, FieldConfig, FieldConfigItem } from "../types";
 import {
   beautifyObjectName,
@@ -16,14 +18,13 @@ import {
   zodToHtmlInputProps,
 } from "../utils";
 import AutoFormArray from "./array";
-import resolveDependencies from "../dependencies";
-import { MutedText } from "../../ui/typography";
 
 function DefaultParent({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
 
 export default function AutoFormObject<
+  // biome-ignore lint/suspicious/noExplicitAny: FIXME
   SchemaType extends z.ZodObject<any, any>,
 >({
   schema,
@@ -48,13 +49,17 @@ export default function AutoFormObject<
   }
 
   const handleIfZodNumber = (item: z.ZodAny) => {
+    // biome-ignore lint/suspicious/noExplicitAny: FIXME
     const isZodNumber = (item as any)._def.typeName === "ZodNumber";
     const isInnerZodNumber =
+      // biome-ignore lint/suspicious/noExplicitAny: FIXME
       (item._def as any).innerType?._def?.typeName === "ZodNumber";
 
     if (isZodNumber) {
+      // biome-ignore lint/suspicious/noExplicitAny: FIXME
       (item as any)._def.coerce = true;
     } else if (isInnerZodNumber) {
+      // biome-ignore lint/suspicious/noExplicitAny: FIXME
       (item._def as any).innerType._def.coerce = true;
     }
 
@@ -89,6 +94,7 @@ export default function AutoFormObject<
               <AccordionTrigger>{itemName}</AccordionTrigger>
               <AccordionContent className="p-2">
                 <AutoFormObject
+                  // biome-ignore lint/suspicious/noExplicitAny: FIXME
                   schema={item as unknown as z.ZodObject<any, any>}
                   fieldConfig={
                     (fieldConfig?.[name] ?? {}) as FieldConfig<
@@ -106,6 +112,7 @@ export default function AutoFormObject<
             <AutoFormArray
               key={key}
               name={name}
+              // biome-ignore lint/suspicious/noExplicitAny: FIXME
               item={item as unknown as z.ZodArray<any>}
               fieldConfig={fieldConfig?.[name] ?? {}}
               path={[...path, name]}

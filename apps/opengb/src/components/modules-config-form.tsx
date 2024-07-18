@@ -42,9 +42,9 @@ export function ModulesConfigForm({
         module.hasUserConfigSchema
           ? z
               .object({
-                config: /* stringToJSONSchema.pipe(
+                config: stringToJSONSchema.pipe(
                   convertSchemaToZod(module.userConfigSchema),
-                ),*/ convertSchemaToZod(module.userConfigSchema),
+                ),
                 // FIXME: use zod schemas from opengb
               })
               .passthrough()
@@ -74,10 +74,7 @@ export function ModulesConfigForm({
           modules[name].hasUserConfigSchema
             ? {
                 ...module,
-                config:
-                  /*SON.stringify(modules[name].userConfig, null, 2)*/ modules[
-                    name
-                  ].userConfig,
+                config: JSON.stringify(modules[name].userConfig, null, 2),
               }
             : module,
         ];

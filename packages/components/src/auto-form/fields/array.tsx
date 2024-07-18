@@ -1,3 +1,7 @@
+import { faAdd, faTrash } from "@fortawesome/pro-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useFieldArray, useFormContext } from "react-hook-form";
+import * as z from "zod";
 import {
   AccordionContent,
   AccordionItem,
@@ -5,21 +9,21 @@ import {
 } from "../../ui/accordion";
 import { Button } from "../../ui/button";
 import { Separator } from "../../ui/separator";
-import { useFieldArray, useFormContext, type useForm } from "react-hook-form";
-import * as z from "zod";
 import { beautifyObjectName } from "../utils";
 import AutoFormObject from "./object";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAdd, faTrash } from "@fortawesome/pro-solid-svg-icons";
 
 function isZodArray(
+  // biome-ignore lint/suspicious/noExplicitAny: FIXME
   item: z.ZodArray<any> | z.ZodDefault<any>,
+  // biome-ignore lint/suspicious/noExplicitAny: FIXME
 ): item is z.ZodArray<any> {
   return item instanceof z.ZodArray;
 }
 
 function isZodDefault(
+  // biome-ignore lint/suspicious/noExplicitAny: FIXME
   item: z.ZodArray<any> | z.ZodDefault<any>,
+  // biome-ignore lint/suspicious/noExplicitAny: FIXME
 ): item is z.ZodDefault<any> {
   return item instanceof z.ZodDefault;
 }
@@ -31,8 +35,10 @@ export default function AutoFormArray({
   fieldConfig,
 }: {
   name: string;
+  // biome-ignore lint/suspicious/noExplicitAny: FIXME
   item: z.ZodArray<any> | z.ZodDefault<any>;
   path?: string[];
+  // biome-ignore lint/suspicious/noExplicitAny: FIXME
   fieldConfig?: any;
 }) {
   const { control } = useFormContext();
@@ -57,6 +63,7 @@ export default function AutoFormArray({
           return (
             <div className="mt-4 flex flex-col" key={`${key}`}>
               <AutoFormObject
+                // biome-ignore lint/suspicious/noExplicitAny: FIXME
                 schema={itemDefType as z.ZodObject<any, any>}
                 fieldConfig={fieldConfig}
                 path={[...path, index.toString()]}

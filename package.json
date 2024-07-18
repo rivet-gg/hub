@@ -9,7 +9,7 @@
   "scripts": {
     "start": "npx turbo dev",
     "build": "npx turbo build",
-    "build:opengb": "npx turbo build --filter=@rivet-gg/opengb-web",
+    "build:opengb": "npx turbo build --filter=@rivet-gg/opengb-editor",
     "fmt": "yarn biome check --write ."
   },
   "devDependencies": {

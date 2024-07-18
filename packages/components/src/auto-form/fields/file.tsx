@@ -1,11 +1,11 @@
+import { faTrash } from "@fortawesome/pro-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { type ChangeEvent, useState } from "react";
 import { FormControl, FormItem, FormMessage } from "../../ui/form";
 import { Input } from "../../ui/input";
-import { type ChangeEvent, useState } from "react";
 import AutoFormLabel from "../common/label";
 import AutoFormTooltip from "../common/tooltip";
 import type { AutoFormInputComponentProps } from "../types";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/pro-solid-svg-icons";
 
 export default function AutoFormFile({
   label,

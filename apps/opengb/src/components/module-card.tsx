@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  AutoFormObject,
   Button,
   Card,
   CardContent,
@@ -14,14 +13,13 @@ import {
   FormLabel,
   FormMessage,
   JsonCode,
+  MutedText,
   Text,
   WithTooltip,
   cn,
 } from "@rivet-gg/components";
 import type { Module } from "@rivet-gg/opengb-shared-internals";
-import { useContext } from "react";
 import { useFormContext } from "react-hook-form";
-import { ConfigSchemaContext } from "./config-schema-context";
 
 interface ConfigInputProps {
   moduleName: string;
@@ -56,29 +54,6 @@ function ConfigInput({ moduleName }: ConfigInputProps) {
   );
 }
 
-interface ConfigInterfaceProps {
-  moduleName: string;
-}
-
-function ConfigInterface({ moduleName }: ConfigInterfaceProps) {
-  const configSchema = useContext(ConfigSchemaContext);
-
-  // config.modules[moduleName].config
-  const configShape =
-    configSchema?.shape.modules.shape[moduleName]._def.innerType.shape.config;
-
-  if (!configShape) {
-    return null;
-  }
-
-  return (
-    <AutoFormObject
-      schema={configShape}
-      path={["modules", moduleName, "config"]}
-    />
-  );
-}
-
 interface DeleteModuleButton {
   moduleName: string;
   content: string;
@@ -99,7 +74,7 @@ function DeleteModuleButton({
           <Button
             size="icon"
             type="button"
-            variant="destructive-outline"
+            variant="destructive"
             disabled={isDisabled}
             onClick={() => {
               const { [moduleName]: moduleToRemove, ...otherModules } =
@@ -146,16 +121,20 @@ export function ModuleCard({
             </CardTitle>
             <Flex gap="2">
               {isRegistryExternal ? (
-                <Button
-                  variant="outline"
-                  type="button"
-                  startIcon={<FontAwesomeIcon icon="book" />}
-                  asChild
-                >
-                  <a href={`https://opengb.dev/modules/${module.name}`}>
-                    Documentation
-                  </a>
-                </Button>
+                <WithTooltip
+                  content="Documentation"
+                  trigger={
+                    <Button variant="outline" size="icon" type="button" asChild>
+                      <a
+                        href={`https://opengb.dev/modules/${module.name}`}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <FontAwesomeIcon icon="book" />
+                      </a>
+                    </Button>
+                  }
+                />
               ) : null}
 
               <DeleteModuleButton
@@ -181,10 +160,17 @@ export function ModuleCard({
         </CardHeader>
         {module.hasUserConfigSchema ? (
           <CardContent>
-            {/* <ConfigInput moduleName={module.name} /> */}
-            <ConfigInterface moduleName={module.name} />
+            <ConfigInput moduleName={module.name} />
           </CardContent>
-        ) : null}
+        ) : (
+          <CardContent>
+            <Flex items="center" justify="center">
+              <MutedText className="text-sm ">
+                No configuration available.
+              </MutedText>
+            </Flex>
+          </CardContent>
+        )}
       </Card>
       {isRemoved ? (
         <Flex items="center" my="2" gap="2">

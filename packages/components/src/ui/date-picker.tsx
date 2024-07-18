@@ -1,12 +1,12 @@
 import { format } from "date-fns";
 
+import { faCalendar } from "@fortawesome/pro-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { forwardRef } from "react";
 import { cn } from "../lib/utils";
 import { Button } from "./button";
 import { Calendar } from "./calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "./popover";
-import { forwardRef } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendar } from "@fortawesome/pro-solid-svg-icons";
 
 export const DatePicker = forwardRef<
   HTMLDivElement,

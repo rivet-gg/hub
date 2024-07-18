@@ -65,6 +65,8 @@ export * from "./lib/timing";
 export * from "./lib/formatter";
 export * from "./lib/exit-signals";
 export * from "./lib/config";
+export * from "./lib/create-schema-form";
+export * from "./auto-form";
 export * from "./hooks";
 export * as styleHelpers from "./ui/helpers/index";
 export { toast } from "sonner";

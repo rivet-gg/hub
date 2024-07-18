@@ -77,23 +77,23 @@ export const BackendEvent = z
       },
       logTimestamps: data.logs
         ? [
-          ...data.logs.map((log) => new Date(+log.timestamp).toISOString()),
-          ...(data.exceptions?.map((log) =>
-            new Date(+log.timestamp).toISOString()
-          ) ?? []),
-        ]
+            ...data.logs.map((log) => new Date(+log.timestamp).toISOString()),
+            ...(data.exceptions?.map((log) =>
+              new Date(+log.timestamp).toISOString(),
+            ) ?? []),
+          ]
         : [],
       logs: data.logs
         ? [
-          ...data.logs.map((log) => ({
-            type: log.level as "error" | "warn" | "log",
-            message: log.message.join("\n"),
-          })),
-          ...(data.exceptions?.map((log) => ({
-            type: "error" as const,
-            message: [log.message, log.stack].join("\n"),
-          })) ?? []),
-        ]
+            ...data.logs.map((log) => ({
+              type: log.level as "error" | "warn" | "log",
+              message: log.message.join("\n"),
+            })),
+            ...(data.exceptions?.map((log) => ({
+              type: "error" as const,
+              message: [log.message, log.stack].join("\n"),
+            })) ?? []),
+          ]
         : [],
     };
   });

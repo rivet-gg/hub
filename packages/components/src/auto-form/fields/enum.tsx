@@ -1,3 +1,4 @@
+import type * as z from "zod";
 import { FormControl, FormItem, FormMessage } from "../../ui/form";
 import {
   Select,
@@ -6,7 +7,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../ui/select";
-import type * as z from "zod";
 import AutoFormLabel from "../common/label";
 import AutoFormTooltip from "../common/tooltip";
 import type { AutoFormInputComponentProps } from "../types";
@@ -20,6 +20,7 @@ export default function AutoFormEnum({
   zodItem,
   fieldProps,
 }: AutoFormInputComponentProps) {
+  // biome-ignore lint/suspicious/noExplicitAny: FIXME
   const baseValues = (getBaseSchema(zodItem) as unknown as z.ZodEnum<any>)._def
     .values;
 
@@ -30,6 +31,7 @@ export default function AutoFormEnum({
     values = baseValues.map((value) => [value, value]);
   }
 
+  // biome-ignore lint/suspicious/noExplicitAny: FIXME
   function findItem(value: any) {
     return values.find((item) => item[0] === value);
   }

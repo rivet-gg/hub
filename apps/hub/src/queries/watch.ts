@@ -2,9 +2,9 @@ import { isRivetError } from "@/lib/utils";
 import { toast } from "@rivet-gg/components";
 import * as Sentry from "@sentry/react";
 import {
-  isCancelledError,
   type Query,
   type QueryClient,
+  isCancelledError,
 } from "@tanstack/react-query";
 import { z } from "zod";
 

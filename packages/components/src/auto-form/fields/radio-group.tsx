@@ -1,6 +1,6 @@
+import type * as z from "zod";
 import { FormControl, FormItem, FormLabel, FormMessage } from "../../ui/form";
 import { RadioGroup, RadioGroupItem } from "../../ui/radio-group";
-import type * as z from "zod";
 import AutoFormLabel from "../common/label";
 import AutoFormTooltip from "../common/tooltip";
 import type { AutoFormInputComponentProps } from "../types";
@@ -14,6 +14,7 @@ export default function AutoFormRadioGroup({
   fieldProps,
   fieldConfigItem,
 }: AutoFormInputComponentProps) {
+  // biome-ignore lint/suspicious/noExplicitAny: TODO: Fix this
   const baseValues = (getBaseSchema(zodItem) as unknown as z.ZodEnum<any>)._def
     .values;
 
@@ -37,17 +38,20 @@ export default function AutoFormRadioGroup({
             defaultValue={field.value}
             {...fieldProps}
           >
-            {values?.map((value: any) => (
-              <FormItem
-                key={value}
-                className="mb-2 flex items-center gap-3 space-y-0"
-              >
-                <FormControl>
-                  <RadioGroupItem value={value} />
-                </FormControl>
-                <FormLabel className="font-normal">{value}</FormLabel>
-              </FormItem>
-            ))}
+            {
+              /* biome-ignore lint/suspicious/noExplicitAny: TODO: Fix this */
+              values?.map((value: any) => (
+                <FormItem
+                  key={value}
+                  className="mb-2 flex items-center gap-3 space-y-0"
+                >
+                  <FormControl>
+                    <RadioGroupItem value={value} />
+                  </FormControl>
+                  <FormLabel className="font-normal">{value}</FormLabel>
+                </FormItem>
+              ))
+            }
           </RadioGroup>
         </FormControl>
         <FormMessage />

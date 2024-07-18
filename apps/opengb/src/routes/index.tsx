@@ -52,6 +52,7 @@ function IndexRoute() {
           {Object.entries(data?.modules).map(([name, module]) => {
             return (
               <Link to="/" hash={name} key={name}>
+                <FontAwesomeIcon icon={module.config.icon} className="mr-1" />
                 {module.config.name || module.namePascal}
               </Link>
             );
@@ -84,10 +85,20 @@ function IndexRoute() {
           <CardContent>
             <Flex gap="2">
               <Button variant="outline" asChild>
-                <a href="https://opengb.dev/docs">Documentation</a>
+                <a
+                  href="https://opengb.dev/docs/build/overview"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Documentation
+                </a>
               </Button>
-              <Button asChild>
-                <a href="https://github.com/rivet-gg/opengb/issues/new">
+              <Button variant="outline" asChild>
+                <a
+                  href="https://github.com/rivet-gg/opengb/issues/new"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   Request module
                 </a>
               </Button>

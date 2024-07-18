@@ -19,10 +19,9 @@ export const metaQueryOptions = () =>
         ...data,
         modules: Object.fromEntries(
           modules.map(([slug, module]) => {
-            const isDuplicate = modules.filter(([_, m]) =>
-              m.config.name === module.config.name
-            )
-              .length > 1;
+            const isDuplicate =
+              modules.filter(([_, m]) => m.config.name === module.config.name)
+                .length > 1;
             const moduleName = module.config.name || module.namePascal;
             return [
               slug,

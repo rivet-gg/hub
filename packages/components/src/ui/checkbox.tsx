@@ -1,9 +1,9 @@
-import * as React from "react";
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
+import * as React from "react";
 
-import { cn } from "../lib/utils";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/pro-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { cn } from "../lib/utils";
 
 const Checkbox = React.forwardRef<
   React.ElementRef<typeof CheckboxPrimitive.Root>,

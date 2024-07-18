@@ -1,3 +1,4 @@
+// biome-ignore lint/suspicious/noExplicitAny: FIXME
 function AutoFormTooltip({ fieldConfigItem }: { fieldConfigItem: any }) {
   return (
     <>

@@ -1,11 +1,11 @@
-import { Form } from "../ui/form";
 import React from "react";
 import { type DefaultValues, type FormState, useForm } from "react-hook-form";
 import type { z } from "zod";
+import { Form } from "../ui/form";
 
-import { Button } from "../ui/button";
-import { cn } from "../lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { cn } from "../lib/utils";
+import { Button } from "../ui/button";
 
 import AutoFormObject from "./fields/object";
 import type { Dependency, FieldConfig } from "./types";
@@ -77,6 +77,7 @@ export function AutoForm<SchemaType extends ZodObjectOrWrapped>({
   // valuesString is needed because form.watch() returns a new object every time
   const valuesString = JSON.stringify(values);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: FIXME
   React.useEffect(() => {
     onValuesChangeProp?.(values);
     const parsedValues = formSchema.safeParse(values);

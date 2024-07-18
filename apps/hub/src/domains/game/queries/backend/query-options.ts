@@ -109,8 +109,8 @@ export const gameBackendProjectEnvEventsQueryOptions = ({
       meta,
       signal,
     }) => {
-      const response = await rivetEeClient.ee.cloud.backend.projects.envs
-        .getEvents(
+      const response =
+        await rivetEeClient.ee.cloud.backend.projects.envs.getEvents(
           projectId,
           environmentId,
           { watchIndex: getMetaWatchIndex(meta) },

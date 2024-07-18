@@ -1,3 +1,5 @@
+import { useState } from "react";
+import type * as z from "zod";
 import { FormControl, FormItem, FormMessage } from "../../ui/form";
 import {
   Select,
@@ -6,13 +8,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../ui/select";
-import type * as z from "zod";
 import AutoFormLabel from "../common/label";
 import AutoFormTooltip from "../common/tooltip";
 import type { AutoFormInputComponentProps } from "../types";
 import { getBaseSchema } from "../utils";
 import AutoFormObject from "./object";
-import { useState } from "react";
 
 export default function AutoFormUnion({
   label,
@@ -23,6 +23,7 @@ export default function AutoFormUnion({
   zodItem,
   fieldProps,
 }: AutoFormInputComponentProps & { path?: string[] }) {
+  // biome-ignore lint/suspicious/noExplicitAny: FIXME
   const def = (getBaseSchema(zodItem) as unknown as z.ZodUnion<any>)._def;
 
   const [selected, setSelected] = useState(() => {
@@ -30,7 +31,8 @@ export default function AutoFormUnion({
       return -1;
     }
 
-    const selected = def.options.findIndex((option) => {
+    // biome-ignore lint/suspicious/noExplicitAny: FIXME
+    const selected = def.options.findIndex((option: any) => {
       try {
         option.parse(field.value);
         return true;
@@ -74,11 +76,18 @@ export default function AutoFormUnion({
               </SelectValue>
             </SelectTrigger>
             <SelectContent>
-              {def.options.map((_, index) => (
-                <SelectItem value={`${index}`} key={index}>
-                  Option #{index + 1}
-                </SelectItem>
-              ))}
+              {
+                // biome-ignore lint/suspicious/noExplicitAny: FIXME
+                def.options.map((_: any, index: number) => (
+                  <SelectItem
+                    value={`${index}`}
+                    // biome-ignore lint/suspicious/noArrayIndexKey: FIXME
+                    key={index}
+                  >
+                    Option #{index + 1}
+                  </SelectItem>
+                ))
+              }
             </SelectContent>
           </Select>
         </FormControl>
