@@ -1,8 +1,11 @@
 import { useFeatureFlagEnabled } from "posthog-js/react";
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-type Flag = "hub-opengb-backend" | "hub-upgraded-alert" | (string & {});
+export type FeatureFlag =
+  | "hub-opengb-backend"
+  | "hub-upgraded-alert"
+  | "hub-dynamic-servers"
+  | (string & {});
 
-export const useFeatureFlag = (flag: Flag) => {
+export const useFeatureFlag = (flag: FeatureFlag) => {
   return useFeatureFlagEnabled(flag);
 };

@@ -63,7 +63,11 @@ export function GameMatchmakerLobbyDetailsPanel({
           isLive={isLive}
           rightSide={
             <>
-              <LobbyLifecycle {...lobby} />
+              <LobbyLifecycle
+                createTs={lobby.createTs}
+                readyTs={lobby.readyTs || lobby.startTs}
+                stopTs={lobby.status.stopped?.stopTs}
+              />
             </>
           }
         />

@@ -22,8 +22,18 @@ function ProfilePage({ children }: ProfilePageProps) {
     <SidebarPageContent
       sidebar={
         <SidebarNavigation>
-          <InternalLink className="data-active:text-foreground font-semibold">
+          <InternalLink
+            to="/my-profile"
+            activeOptions={{ exact: true }}
+            className="data-active:text-foreground font-semibold"
+          >
             Your Account
+          </InternalLink>
+          <InternalLink
+            to="/my-profile/features"
+            className="data-active:text-foreground data-activefont-semibold"
+          >
+            Features
           </InternalLink>
           <Link
             onClick={logout}

@@ -4,6 +4,11 @@ import {
   omitDisplayProps,
 } from "./display";
 import {
+  type HeightUtilitiesProps,
+  getHeightClass,
+  omitHeightProps,
+} from "./height";
+import {
   type MarginUtilitiesProps,
   getMarginClass,
   omitMarginProps,
@@ -38,17 +43,20 @@ export interface CommonHelperProps
   extends MarginUtilitiesProps,
     PaddingUtilitiesProps,
     WidthUtilitiesProps,
+    HeightUtilitiesProps,
     MinHeightUtilitiesProps,
     MinWidthUtilitiesProps,
     TextAlignUtilitiesProps,
     DisplayUtilitiesProps {}
 
 export function omitCommonHelperProps(props: Partial<CommonHelperProps>) {
-  return omitDisplayProps(
-    omitTextAlignProps(
-      omitMinWidthProps(
-        omitMinHeightProps(
-          omitMarginProps(omitPaddingProps(omitWidthProps(props))),
+  return omitHeightProps(
+    omitDisplayProps(
+      omitTextAlignProps(
+        omitMinWidthProps(
+          omitMinHeightProps(
+            omitMarginProps(omitPaddingProps(omitWidthProps(props))),
+          ),
         ),
       ),
     ),
@@ -64,5 +72,6 @@ export function getCommonHelperClass(props: Partial<CommonHelperProps>) {
     getMinWidthClass(props),
     getTextAlignClass(props),
     getDisplayClass(props),
+    getHeightClass(props),
   ].join(" ");
 }

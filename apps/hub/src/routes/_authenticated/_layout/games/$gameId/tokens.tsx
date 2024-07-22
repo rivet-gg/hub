@@ -22,10 +22,32 @@ function CloudTokenCard() {
   );
 }
 
+function ServiceTokenCard() {
+  return (
+    <>
+      <DocsCard
+        title="Service token"
+        href="https://rivet.gg/docs/general/concepts/handling-game-tokens#public-namespace-tokens"
+        footer={
+          <Button asChild>
+            <Link search={{ modal: "service-token" }}>Generate</Link>
+          </Button>
+        }
+      >
+        <Text>
+          Service tokens are used from private API servers. These should never
+          be shared.
+        </Text>
+      </DocsCard>
+    </>
+  );
+}
+
 function GameTokensRoute() {
   return (
     <Grid columns={{ initial: "1", md: "2" }} gap="4" items="start">
       <CloudTokenCard />
+      <ServiceTokenCard />
     </Grid>
   );
 }

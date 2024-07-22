@@ -18,7 +18,7 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@hookform/resolvers": "^3.3.4",
     "@react-hookz/web": "^24.0.4",
-    "@rivet-gg/api": "https://github.com/rivet-gg/rivet/raw/af2d4dba7209247a40413266de733cb1301d81d5/sdks/full/typescript/archive.tgz",
+    "@rivet-gg/api": "https://github.com/rivet-gg/rivet/raw/74ccfabd69fad3e2d1c6fcdfbce4f105c21dbd11/sdks/full/typescript/archive.tgz",
     "@rivet-gg/api-ee": "file:vendor/rivet-gg-api-ee.tgz",
     "@rivet-gg/components": "workspace:*",
     "@sentry/react": "^8.14.0",

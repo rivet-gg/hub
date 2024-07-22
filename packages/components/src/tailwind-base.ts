@@ -17,6 +17,7 @@ const safelistMap: Array<[string, readonly string[], { useDash?: boolean }]> = [
   ["min-h", styleHelpers.MIN_HEIGHT_VALUES, {}],
   ["min-w", styleHelpers.MIN_WIDTH_VALUES, {}],
   ["text", styleHelpers.TEXT_ALIGN_VALUES, {}],
+  ["h", styleHelpers.HEIGHT_VALUES, {}],
   ["", styleHelpers.DISPLAY_VALUES, { useDash: false }],
 ];
 

@@ -18,8 +18,10 @@ import { Route as AuthenticatedLayoutIndexImport } from './routes/_authenticated
 import { Route as AuthenticatedInviteInviteCodeImport } from './routes/_authenticated/invite.$inviteCode'
 import { Route as AuthenticatedAccessTokenTokenImport } from './routes/_authenticated/access-token.$token'
 import { Route as AuthenticatedLayoutMyProfileImport } from './routes/_authenticated/_layout/my-profile'
+import { Route as AuthenticatedLayoutMyProfileIndexImport } from './routes/_authenticated/_layout/my-profile/index'
 import { Route as AuthenticatedDevicesLinkTokenImport } from './routes/_authenticated/devices.link.$token'
 import { Route as AuthenticatedLayoutTeamsGroupIdImport } from './routes/_authenticated/_layout/teams/$groupId'
+import { Route as AuthenticatedLayoutMyProfileFeaturesImport } from './routes/_authenticated/_layout/my-profile/features'
 import { Route as AuthenticatedLayoutGamesGameIdImport } from './routes/_authenticated/_layout/games/$gameId'
 import { Route as AuthenticatedLayoutTeamsGroupIdIndexImport } from './routes/_authenticated/_layout/teams/$groupId/index'
 import { Route as AuthenticatedLayoutGamesGameIdIndexImport } from './routes/_authenticated/_layout/games/$gameId/index'
@@ -28,6 +30,8 @@ import { Route as AuthenticatedLayoutTeamsGroupIdMembersImport } from './routes/
 import { Route as AuthenticatedLayoutTeamsGroupIdBillingImport } from './routes/_authenticated/_layout/teams/$groupId/billing'
 import { Route as AuthenticatedLayoutGamesGameIdTokensImport } from './routes/_authenticated/_layout/games/$gameId/tokens'
 import { Route as AuthenticatedLayoutGamesGameIdSettingsImport } from './routes/_authenticated/_layout/games/$gameId/settings'
+import { Route as AuthenticatedLayoutGamesGameIdServersImport } from './routes/_authenticated/_layout/games/$gameId/servers'
+import { Route as AuthenticatedLayoutGamesGameIdBuildsImport } from './routes/_authenticated/_layout/games/$gameId/builds'
 import { Route as AuthenticatedLayoutGamesGameIdBillingImport } from './routes/_authenticated/_layout/games/$gameId/billing'
 import { Route as AuthenticatedLayoutGamesGameIdBackendImport } from './routes/_authenticated/_layout/games/$gameId/backend'
 import { Route as AuthenticatedLayoutTeamsGroupIdSettingsIndexImport } from './routes/_authenticated/_layout/teams/$groupId/settings/index'
@@ -88,6 +92,12 @@ const AuthenticatedLayoutMyProfileRoute =
     getParentRoute: () => AuthenticatedLayoutRoute,
   } as any)
 
+const AuthenticatedLayoutMyProfileIndexRoute =
+  AuthenticatedLayoutMyProfileIndexImport.update({
+    path: '/',
+    getParentRoute: () => AuthenticatedLayoutMyProfileRoute,
+  } as any)
+
 const AuthenticatedDevicesLinkTokenRoute =
   AuthenticatedDevicesLinkTokenImport.update({
     path: '/devices/link/$token',
@@ -98,6 +108,12 @@ const AuthenticatedLayoutTeamsGroupIdRoute =
   AuthenticatedLayoutTeamsGroupIdImport.update({
     path: '/teams/$groupId',
     getParentRoute: () => AuthenticatedLayoutRoute,
+  } as any)
+
+const AuthenticatedLayoutMyProfileFeaturesRoute =
+  AuthenticatedLayoutMyProfileFeaturesImport.update({
+    path: '/features',
+    getParentRoute: () => AuthenticatedLayoutMyProfileRoute,
   } as any)
 
 const AuthenticatedLayoutGamesGameIdRoute =
@@ -145,6 +161,18 @@ const AuthenticatedLayoutGamesGameIdTokensRoute =
 const AuthenticatedLayoutGamesGameIdSettingsRoute =
   AuthenticatedLayoutGamesGameIdSettingsImport.update({
     path: '/settings',
+    getParentRoute: () => AuthenticatedLayoutGamesGameIdRoute,
+  } as any)
+
+const AuthenticatedLayoutGamesGameIdServersRoute =
+  AuthenticatedLayoutGamesGameIdServersImport.update({
+    path: '/servers',
+    getParentRoute: () => AuthenticatedLayoutGamesGameIdRoute,
+  } as any)
+
+const AuthenticatedLayoutGamesGameIdBuildsRoute =
+  AuthenticatedLayoutGamesGameIdBuildsImport.update({
+    path: '/builds',
     getParentRoute: () => AuthenticatedLayoutGamesGameIdRoute,
   } as any)
 
@@ -336,6 +364,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedLayoutGamesGameIdImport
       parentRoute: typeof AuthenticatedLayoutImport
     }
+    '/_authenticated/_layout/my-profile/features': {
+      id: '/_authenticated/_layout/my-profile/features'
+      path: '/features'
+      fullPath: '/my-profile/features'
+      preLoaderRoute: typeof AuthenticatedLayoutMyProfileFeaturesImport
+      parentRoute: typeof AuthenticatedLayoutMyProfileImport
+    }
     '/_authenticated/_layout/teams/$groupId': {
       id: '/_authenticated/_layout/teams/$groupId'
       path: '/teams/$groupId'
@@ -350,6 +385,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDevicesLinkTokenImport
       parentRoute: typeof AuthenticatedImport
     }
+    '/_authenticated/_layout/my-profile/': {
+      id: '/_authenticated/_layout/my-profile/'
+      path: '/'
+      fullPath: '/my-profile/'
+      preLoaderRoute: typeof AuthenticatedLayoutMyProfileIndexImport
+      parentRoute: typeof AuthenticatedLayoutMyProfileImport
+    }
     '/_authenticated/_layout/games/$gameId/backend': {
       id: '/_authenticated/_layout/games/$gameId/backend'
       path: '/backend'
@@ -362,6 +404,20 @@ declare module '@tanstack/react-router' {
       path: '/billing'
       fullPath: '/games/$gameId/billing'
       preLoaderRoute: typeof AuthenticatedLayoutGamesGameIdBillingImport
+      parentRoute: typeof AuthenticatedLayoutGamesGameIdImport
+    }
+    '/_authenticated/_layout/games/$gameId/builds': {
+      id: '/_authenticated/_layout/games/$gameId/builds'
+      path: '/builds'
+      fullPath: '/games/$gameId/builds'
+      preLoaderRoute: typeof AuthenticatedLayoutGamesGameIdBuildsImport
+      parentRoute: typeof AuthenticatedLayoutGamesGameIdImport
+    }
+    '/_authenticated/_layout/games/$gameId/servers': {
+      id: '/_authenticated/_layout/games/$gameId/servers'
+      path: '/servers'
+      fullPath: '/games/$gameId/servers'
+      preLoaderRoute: typeof AuthenticatedLayoutGamesGameIdServersImport
       parentRoute: typeof AuthenticatedLayoutGamesGameIdImport
     }
     '/_authenticated/_layout/games/$gameId/settings': {
@@ -540,7 +596,11 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren({
   AuthenticatedRoute: AuthenticatedRoute.addChildren({
     AuthenticatedLayoutRoute: AuthenticatedLayoutRoute.addChildren({
-      AuthenticatedLayoutMyProfileRoute,
+      AuthenticatedLayoutMyProfileRoute:
+        AuthenticatedLayoutMyProfileRoute.addChildren({
+          AuthenticatedLayoutMyProfileFeaturesRoute,
+          AuthenticatedLayoutMyProfileIndexRoute,
+        }),
       AuthenticatedLayoutIndexRoute,
       AuthenticatedLayoutGamesGameIdRoute:
         AuthenticatedLayoutGamesGameIdRoute.addChildren({
@@ -557,6 +617,8 @@ export const routeTree = rootRoute.addChildren({
               AuthenticatedLayoutGamesGameIdBackendIndexRoute,
             }),
           AuthenticatedLayoutGamesGameIdBillingRoute,
+          AuthenticatedLayoutGamesGameIdBuildsRoute,
+          AuthenticatedLayoutGamesGameIdServersRoute,
           AuthenticatedLayoutGamesGameIdSettingsRoute:
             AuthenticatedLayoutGamesGameIdSettingsRoute.addChildren({
               AuthenticatedLayoutGamesGameIdSettingsIndexRoute,
@@ -636,7 +698,11 @@ export const routeTree = rootRoute.addChildren({
     },
     "/_authenticated/_layout/my-profile": {
       "filePath": "_authenticated/_layout/my-profile.tsx",
-      "parent": "/_authenticated/_layout"
+      "parent": "/_authenticated/_layout",
+      "children": [
+        "/_authenticated/_layout/my-profile/features",
+        "/_authenticated/_layout/my-profile/"
+      ]
     },
     "/_authenticated/access-token/$token": {
       "filePath": "_authenticated/access-token.$token.tsx",
@@ -656,10 +722,16 @@ export const routeTree = rootRoute.addChildren({
       "children": [
         "/_authenticated/_layout/games/$gameId/backend",
         "/_authenticated/_layout/games/$gameId/billing",
+        "/_authenticated/_layout/games/$gameId/builds",
+        "/_authenticated/_layout/games/$gameId/servers",
         "/_authenticated/_layout/games/$gameId/settings",
         "/_authenticated/_layout/games/$gameId/tokens",
         "/_authenticated/_layout/games/$gameId/"
       ]
+    },
+    "/_authenticated/_layout/my-profile/features": {
+      "filePath": "_authenticated/_layout/my-profile/features.tsx",
+      "parent": "/_authenticated/_layout/my-profile"
     },
     "/_authenticated/_layout/teams/$groupId": {
       "filePath": "_authenticated/_layout/teams/$groupId.tsx",
@@ -675,6 +747,10 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "_authenticated/devices.link.$token.tsx",
       "parent": "/_authenticated"
     },
+    "/_authenticated/_layout/my-profile/": {
+      "filePath": "_authenticated/_layout/my-profile/index.tsx",
+      "parent": "/_authenticated/_layout/my-profile"
+    },
     "/_authenticated/_layout/games/$gameId/backend": {
       "filePath": "_authenticated/_layout/games/$gameId/backend.tsx",
       "parent": "/_authenticated/_layout/games/$gameId",
@@ -685,6 +761,14 @@ export const routeTree = rootRoute.addChildren({
     },
     "/_authenticated/_layout/games/$gameId/billing": {
       "filePath": "_authenticated/_layout/games/$gameId/billing.tsx",
+      "parent": "/_authenticated/_layout/games/$gameId"
+    },
+    "/_authenticated/_layout/games/$gameId/builds": {
+      "filePath": "_authenticated/_layout/games/$gameId/builds.tsx",
+      "parent": "/_authenticated/_layout/games/$gameId"
+    },
+    "/_authenticated/_layout/games/$gameId/servers": {
+      "filePath": "_authenticated/_layout/games/$gameId/servers.tsx",
       "parent": "/_authenticated/_layout/games/$gameId"
     },
     "/_authenticated/_layout/games/$gameId/settings": {
