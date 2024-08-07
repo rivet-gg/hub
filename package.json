@@ -2,10 +2,14 @@
   "private": true,
   "packageManager": "yarn@4.2.2",
   "name": "hub",
-  "workspaces": ["packages/*", "apps/*"],
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
   "scripts": {
     "start": "npx turbo dev",
     "build": "npx turbo build",
+    "build:opengb": "npx turbo build --filter=@rivet-gg/opengb-web",
     "fmt": "yarn biome check --write ."
   },
   "devDependencies": {

@@ -1,0 +1,39 @@
+{
+  "name": "@rivet-gg/opengb-web",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@rivet-gg/api": "^24.1.2",
+    "@rivet-gg/components": "workspace:^",
+    "@rivet-gg/opengb-shared-internals": "workspace:^",
+    "@sentry/react": "^8.17.0",
+    "@tanstack/query-broadcast-client-experimental": "^5.50.1",
+    "@tanstack/query-sync-storage-persister": "^5.50.1",
+    "@tanstack/react-query": "^5.50.1",
+    "@tanstack/react-query-devtools": "^5.50.1",
+    "@tanstack/react-query-persist-client": "^5.50.1",
+    "@tanstack/react-router": "^1.33.4",
+    "@tanstack/router-devtools": "^1.33.4",
+    "codemirror-json-schema": "^0.7.8",
+    "ky": "^1.4.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "superjson": "^2.2.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@tanstack/router-vite-plugin": "^1.45.2",
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "@vitejs/plugin-react": "^4.2.1",
+    "typescript": "^5.2.2",
+    "vite": "^5.2.0",
+    "vite-plugin-favicons-inject": "^2.2.0"
+  }
+}

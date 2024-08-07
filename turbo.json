@@ -10,11 +10,6 @@
     "dev": {
       "cache": false,
       "persistent": true
-    },
-    "@rivet-gg/components#dev": {
-      "dependsOn": ["@rivet-gg/components#build"],
-      "cache": false,
-      "persistent": true
     }
   }
 }

@@ -1,0 +1,11 @@
+{
+  "name": "@rivet-gg/opengb-shared-internals",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    "./schema": "./src/schema/index.ts",
+    "./identifiers": "./src/identifiers/index.ts",
+    ".": "./src/index.ts"
+  }
+}
