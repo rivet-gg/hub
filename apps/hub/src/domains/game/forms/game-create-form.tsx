@@ -1,10 +1,10 @@
 import { GroupSelect } from "@/domains/group/components/group-select";
-import { createSchemaForm } from "@/lib/create-schema-form";
 import {
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
+  createSchemaForm,
 } from "@rivet-gg/components";
 import { type UseFormReturn, useFormContext } from "react-hook-form";
 import z from "zod";

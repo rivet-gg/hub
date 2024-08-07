@@ -2,7 +2,6 @@ import {
   safeAsyncValidation,
   validateAgainstApi,
 } from "@/lib/async-validation";
-import { createSchemaForm } from "@/lib/create-schema-form";
 import { convertStringToId } from "@/lib/utils";
 import { rivetEeClient } from "@/queries/global";
 import { Rivet as RivetEe } from "@rivet-gg/api-ee";
@@ -19,6 +18,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
+  createSchemaForm,
 } from "@rivet-gg/components";
 import { type UseFormReturn, useFormContext } from "react-hook-form";
 import z from "zod";
