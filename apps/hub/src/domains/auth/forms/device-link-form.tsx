@@ -1,11 +1,11 @@
 import { GameSelect } from "@/domains/game/components/game-select";
 import { useDialog } from "@/hooks/use-dialog";
-import { createSchemaForm } from "@/lib/create-schema-form";
 import {
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
+  createSchemaForm,
 } from "@rivet-gg/components";
 import { type UseFormReturn, useFormContext } from "react-hook-form";
 import z from "zod";

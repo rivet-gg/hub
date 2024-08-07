@@ -14,5 +14,9 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src", "vite.config.ts"]
+  "include": [
+    "src",
+    "vite.config.ts",
+    "../../packages/components/src/lib/create-schema-form.tsx"
+  ]
 }

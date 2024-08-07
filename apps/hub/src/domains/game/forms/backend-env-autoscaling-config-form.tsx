@@ -1,4 +1,3 @@
-import { createSchemaForm } from "@/lib/create-schema-form";
 import {
   Flex,
   FormControl,
@@ -11,6 +10,7 @@ import {
   Link,
   Slider,
   SmallText,
+  createSchemaForm,
 } from "@rivet-gg/components";
 import { type UseFormReturn, useFormContext } from "react-hook-form";
 import z from "zod";

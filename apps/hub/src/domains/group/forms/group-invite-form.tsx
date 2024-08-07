@@ -1,4 +1,3 @@
-import { createSchemaForm } from "@/lib/create-schema-form";
 import {
   Flex,
   FormControl,
@@ -13,6 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
   Switch,
+  createSchemaForm,
   timing,
 } from "@rivet-gg/components";
 import { type UseFormReturn, useFormContext } from "react-hook-form";
