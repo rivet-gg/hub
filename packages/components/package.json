@@ -3,17 +3,18 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist", "src", "public"],
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "exports": {
     ".": {
       "import": "./src/index.ts"
     },
+    "./header": "./src/header/index.tsx",
+    "./auto-form": "./src/auto-form/index.tsx",
     "./theme.css": "./public/theme.css",
-    "./tailwind-base": "./src/tailwind-base.ts"
+    "./tailwind-base": "./src/tailwind-base.ts",
+    "./layout": "./src/layout/index.ts"
   },
   "scripts": {
     "dev": "vite build --watch",
@@ -29,6 +30,7 @@
     "@fortawesome/pro-regular-svg-icons": "^6.5.2",
     "@fortawesome/pro-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "@hookform/resolvers": "^3.9.0",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-avatar": "^1.0.4",
     "@radix-ui/react-checkbox": "^1.1.1",
@@ -48,6 +50,7 @@
     "@radix-ui/react-toggle": "^1.0.3",
     "@radix-ui/react-tooltip": "^1.1.1",
     "@radix-ui/react-visually-hidden": "^1.0.3",
+    "@react-hookz/web": "^24.0.4",
     "@rivet-gg/api": "https://github.com/rivet-gg/rivet/raw/539f11efb856bc936576fe593fe051c0d7e1355d/sdks/typescript/archive.tgz",
     "@tanstack/react-virtual": "^3.8.1",
     "@uiw/codemirror-extensions-basic-setup": "^4.23.0",
@@ -66,7 +69,8 @@
     "react-resizable-panels": "^2.0.19",
     "sonner": "^1.4.41",
     "tailwind-merge": "^2.2.2",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/mime": "^4.0.0",

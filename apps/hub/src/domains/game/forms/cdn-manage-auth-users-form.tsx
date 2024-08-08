@@ -1,4 +1,3 @@
-import { createSchemaForm } from "@/lib/create-schema-form";
 import { faTrash } from "@fortawesome/pro-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,6 +10,7 @@ import {
   FormMessage,
   Input,
   Text,
+  createSchemaForm,
 } from "@rivet-gg/components";
 import {
   type UseFormReturn,

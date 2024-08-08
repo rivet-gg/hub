@@ -1,4 +1,3 @@
-import { createSchemaForm } from "@/lib/create-schema-form";
 import {
   FileInput,
   FormControl,
@@ -6,6 +5,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  createSchemaForm,
   fileSize,
 } from "@rivet-gg/components";
 import { type UseFormReturn, useFormContext } from "react-hook-form";
