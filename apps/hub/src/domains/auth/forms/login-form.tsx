@@ -1,4 +1,3 @@
-import { createSchemaForm } from "@/lib/create-schema-form";
 import {
   FormControl,
   FormField,
@@ -6,6 +5,7 @@ import {
   FormLabel,
   FormMessage,
   Input,
+  createSchemaForm,
 } from "@rivet-gg/components";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { type UseFormReturn, useFormContext } from "react-hook-form";

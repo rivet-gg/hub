@@ -1,4 +1,3 @@
-import { createSchemaForm } from "@/lib/create-schema-form";
 import {
   FormControl,
   FormField,
@@ -11,6 +10,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
+  createSchemaForm,
   formatCurrency,
 } from "@rivet-gg/components";
 import { useEffect } from "react";

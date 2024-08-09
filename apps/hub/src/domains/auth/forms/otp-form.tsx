@@ -1,7 +1,6 @@
 import { type UseFormReturn, useFormContext } from "react-hook-form";
 import z from "zod";
 
-import { createSchemaForm } from "@/lib/create-schema-form";
 import {
   FormControl,
   FormField,
@@ -11,6 +10,7 @@ import {
   InputOTP,
   InputOTPGroup,
   InputOTPSlot,
+  createSchemaForm,
 } from "@rivet-gg/components";
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp";
 import type { InputHTMLAttributes } from "react";
