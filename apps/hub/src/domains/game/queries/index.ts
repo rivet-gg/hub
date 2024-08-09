@@ -8,3 +8,5 @@ export * from "./backend/mutations";
 export * from "./backend/helpers";
 export * from "./billing/query-options";
 export * from "./billing/mutations";
+export * from "./dynamic-servers/query-options";
+export * from "./dynamic-servers/mutations";

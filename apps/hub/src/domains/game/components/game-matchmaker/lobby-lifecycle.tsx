@@ -1,8 +1,13 @@
 import { faChevronRight } from "@fortawesome/pro-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Badge, WithTooltip, cn, formatDuration } from "@rivet-gg/components";
-import { forwardRef } from "react";
-import type { LobbySummary } from "../../queries";
+import {
+  Badge,
+  RelativeTime,
+  WithTooltip,
+  cn,
+  formatDuration,
+} from "@rivet-gg/components";
+import { type PropsWithChildren, forwardRef } from "react";
 
 const Separator = forwardRef<HTMLButtonElement, { isActive?: boolean }>(
   ({ isActive, ...rest }, ref) => {
@@ -22,236 +27,142 @@ const Separator = forwardRef<HTMLButtonElement, { isActive?: boolean }>(
   },
 );
 
-interface LobbyLifecycleProps extends LobbySummary {}
+const Trigger = forwardRef<HTMLButtonElement, PropsWithChildren>(
+  ({ children, ...props }, ref) => {
+    return (
+      <button
+        ref={ref}
+        type="button"
+        className="py-2 cursor-default flex flex-col gap-1 items-center"
+        {...props}
+      >
+        {children}
+      </button>
+    );
+  },
+);
+
+const Details = ({ children }: PropsWithChildren) => {
+  return <p className="text-xs">{children}</p>;
+};
+
+interface LobbyLifecycleProps {
+  createTs: Date;
+  readyTs?: Date;
+  stopTs?: Date;
+}
 
 export function LobbyLifecycle({
   createTs,
-  startTs,
   readyTs,
-  status,
-  readableStatus,
+  stopTs,
 }: LobbyLifecycleProps) {
-  const stopTs = status.stopped?.stopTs;
   return (
     <div className="flex text-sm gap w-full md:justify-end relative">
       <div className="relative md:gap-0 gap-1 flex items-center">
         <WithTooltip
-          content={<>Created at {createTs.toLocaleString()}</>}
+          content={createTs.toLocaleString()}
           trigger={
-            <button type="button" className="py-2 cursor-default">
+            <Trigger>
               <Badge
-                variant={
-                  !readyTs && !startTs && !stopTs ? "default" : "outline"
-                }
+                variant={!readyTs && !stopTs ? "default" : "outline"}
                 className="border-primary"
               >
                 Create
               </Badge>
-            </button>
+              <Details>
+                <RelativeTime time={createTs} />
+              </Details>
+            </Trigger>
           }
         />
 
-        {
-          // server started, or it is going to start
-          readyTs ||
-          (!readyTs && !["failed", "closed"].includes(readableStatus)) ? (
-            <>
-              {readyTs ? (
+        {readyTs && !stopTs ? (
+          <>
+            <Separator isActive />
+            <WithTooltip
+              content={
                 <>
-                  <WithTooltip
-                    content={
-                      <>
-                        Took{" "}
-                        {formatDuration(
-                          readyTs.getTime() - createTs.getTime(),
-                          {
-                            showSeconds: true,
-                            showMilliseconds: true,
-                          },
-                        )}{" "}
-                        to ready
-                      </>
-                    }
-                    trigger={<Separator isActive />}
-                  />
-                  <WithTooltip
-                    content={
-                      <>
-                        Ready at {readyTs.toLocaleString()} (
-                        {formatDuration(
-                          readyTs.getTime() - createTs.getTime(),
-                          {
-                            showSeconds: true,
-                            showMilliseconds: true,
-                          },
-                        )}{" "}
-                        to ready)
-                      </>
-                    }
-                    trigger={
-                      <button type="button" className="py-2 cursor-default">
-                        <Badge
-                          variant={!startTs && !stopTs ? "default" : "outline"}
-                          className="border-primary cursor-default bg-card"
-                        >
-                          Ready
-                        </Badge>
-                      </button>
-                    }
-                  />
+                  {formatDuration(readyTs.getTime() - createTs.getTime(), {
+                    showSeconds: true,
+                    showMilliseconds: true,
+                  })}{" "}
+                  since create
                 </>
-              ) : (
-                <>
-                  <Separator />
-                  <Badge variant="outline" className="cursor-default">
+              }
+              trigger={
+                <Trigger>
+                  <Badge variant="default" className="border-primary">
                     Ready
                   </Badge>
-                </>
-              )}
-            </>
-          ) : null
-        }
-
-        {(startTs && readyTs) ||
-        (startTs &&
-          !readyTs &&
-          !["failed", "closed"].includes(readableStatus)) ? (
+                  <Details>{readyTs.toLocaleString()}</Details>
+                </Trigger>
+              }
+            />
+          </>
+        ) : readyTs && stopTs ? (
           <>
-            {readyTs ? (
-              <>
-                <WithTooltip
-                  content={
-                    <>
-                      Took{" "}
-                      {formatDuration(startTs.getTime() - readyTs.getTime(), {
-                        showSeconds: true,
-                        showMilliseconds: true,
-                      })}{" "}
-                      to start
-                    </>
-                  }
-                  trigger={<Separator isActive />}
-                />
-                <WithTooltip
-                  content={
-                    <>
-                      Started at {readyTs.toLocaleString()}
-                      <br />
-                      {formatDuration(startTs.getTime() - readyTs.getTime(), {
-                        showSeconds: true,
-                        showMilliseconds: true,
-                      })}{" "}
-                      to start,{" "}
-                      {formatDuration(startTs.getTime() - createTs.getTime(), {
-                        showSeconds: true,
-                        showMilliseconds: true,
-                      })}{" "}
-                      since create
-                    </>
-                  }
-                  trigger={
-                    <button type="button" className="py-2 cursor-default">
-                      <Badge
-                        variant={stopTs ? "outline" : "default"}
-                        className="border-primary cursor-default"
-                      >
-                        Start
-                      </Badge>
-                    </button>
-                  }
-                />
-              </>
-            ) : (
-              <>
-                <Separator />
-                <Badge variant="outline" className="cursor-default">
-                  Start
-                </Badge>
-              </>
-            )}
+            <Separator isActive />
+            <WithTooltip
+              content={
+                <>
+                  {readyTs.toLocaleString()}
+                  <br />
+                  {formatDuration(readyTs.getTime() - createTs.getTime(), {
+                    showSeconds: true,
+                    showMilliseconds: true,
+                  })}{" "}
+                  since create
+                </>
+              }
+              trigger={
+                <Trigger>
+                  <Badge
+                    variant="outline"
+                    className="border-primary cursor-default"
+                  >
+                    Ready
+                  </Badge>
+                  <Details>
+                    {stopTs && readyTs
+                      ? formatDuration(stopTs.getTime() - readyTs.getTime(), {
+                          showSeconds: true,
+                        })
+                      : ""}
+                  </Details>
+                </Trigger>
+              }
+            />
           </>
         ) : (
           <>
-            <Separator />
-            <Badge variant="outline" className="cursor-default">
-              Start
-            </Badge>
+            <Separator isActive={!!readyTs} />
+            <Trigger>
+              <Badge
+                variant="outline"
+                className={cn(!!readyTs && "border-primary", "cursor-default")}
+              >
+                Ready
+              </Badge>
+              <Details>
+                {stopTs && readyTs
+                  ? formatDuration(stopTs.getTime() - readyTs.getTime(), {
+                      showSeconds: true,
+                    })
+                  : ""}
+              </Details>
+            </Trigger>
           </>
         )}
 
         {stopTs ? (
           <>
+            <Separator isActive />
             <WithTooltip
               content={
                 <>
-                  {readyTs ? (
-                    <>
-                      Took{" "}
-                      {formatDuration(stopTs.getTime() - readyTs.getTime(), {
-                        showSeconds: true,
-                        showMilliseconds: true,
-                      })}{" "}
-                      to finish
-                    </>
-                  ) : null}
-                  {!readyTs && startTs ? (
-                    <>
-                      Took{" "}
-                      {formatDuration(stopTs.getTime() - startTs.getTime(), {
-                        showSeconds: true,
-                        showMilliseconds: true,
-                      })}{" "}
-                      to fail
-                    </>
-                  ) : null}
-                  {!readyTs && !startTs ? (
-                    <>
-                      Took{" "}
-                      {formatDuration(stopTs.getTime() - createTs.getTime(), {
-                        showSeconds: true,
-                        showMilliseconds: true,
-                      })}{" "}
-                      to fail
-                    </>
-                  ) : null}
-                </>
-              }
-              trigger={<Separator isActive />}
-            />
-            <WithTooltip
-              content={
-                <>
-                  {readableStatus === "failed" ? "Failed" : "Finished"} at{" "}
                   {stopTs.toLocaleString()}
                   <br />
-                  {readyTs ? (
-                    <>
-                      {formatDuration(stopTs.getTime() - readyTs.getTime(), {
-                        showSeconds: true,
-                        showMilliseconds: true,
-                      })}{" "}
-                      to finish
-                    </>
-                  ) : null}
-                  {!readyTs && startTs ? (
-                    <>
-                      {formatDuration(stopTs.getTime() - startTs.getTime(), {
-                        showSeconds: true,
-                        showMilliseconds: true,
-                      })}{" "}
-                      to fail
-                    </>
-                  ) : null}
-                  {!readyTs && !startTs ? (
-                    <>
-                      {formatDuration(stopTs.getTime() - createTs.getTime(), {
-                        showSeconds: true,
-                        showMilliseconds: true,
-                      })}{" "}
-                      to fail
-                    </>
-                  ) : null}
-                  ,{" "}
                   {formatDuration(stopTs.getTime() - createTs.getTime(), {
                     showSeconds: true,
                     showMilliseconds: true,
@@ -260,20 +171,26 @@ export function LobbyLifecycle({
                 </>
               }
               trigger={
-                <button type="button" className="py-2 cursor-default">
-                  <Badge>
-                    {readableStatus === "failed" ? "Failed" : "Finish"}
+                <Trigger>
+                  <Badge variant="default" className="border-primary">
+                    Stop
                   </Badge>
-                </button>
+                  <Details>
+                    <RelativeTime time={stopTs} />
+                  </Details>
+                </Trigger>
               }
             />
           </>
         ) : (
           <>
             <Separator />
-            <Badge variant="outline" className="cursor-default">
-              Finish
-            </Badge>
+            <Trigger>
+              <Badge variant="outline" className="cursor-default">
+                Stop
+              </Badge>
+              <Details />
+            </Trigger>
           </>
         )}
       </div>

@@ -1,6 +1,7 @@
 import { faCopy } from "@fortawesome/pro-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { forwardRef, useState } from "react";
+import { Slot } from "@radix-ui/react-slot";
+import { type ReactNode, forwardRef, useState } from "react";
 import { toast } from "sonner";
 import { cn } from "./lib/utils";
 import { Button, type ButtonProps } from "./ui/button";
@@ -88,3 +89,16 @@ export const CopyArea = forwardRef<HTMLButtonElement, CopyAreaProps>(
     );
   },
 );
+
+interface CopyButtonProps {
+  children: ReactNode;
+  value: string;
+}
+
+export function CopyButton({ children, value }: CopyButtonProps) {
+  const handleClick = () => {
+    navigator.clipboard.writeText(value);
+    toast.success("Copied to clipboard");
+  };
+  return <Slot onClick={handleClick}>{children}</Slot>;
+}

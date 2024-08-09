@@ -1,4 +1,4 @@
-import { faDownload } from "@fortawesome/pro-solid-svg-icons";
+import { faSave } from "@fortawesome/pro-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { Rivet } from "@rivet-gg/api";
 import { Button, LogsView, WithTooltip } from "@rivet-gg/components";
@@ -52,7 +52,7 @@ export function LobbyLogs({
               size="icon"
               onClick={() => download({ lobbyId, gameId, stream: logType })}
             >
-              <FontAwesomeIcon icon={faDownload} />
+              <FontAwesomeIcon icon={faSave} />
             </Button>
           }
         />

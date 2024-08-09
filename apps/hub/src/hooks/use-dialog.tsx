@@ -174,6 +174,14 @@ useDialog.GenerateGameCloudToken = createDialogHook(
     autoFocus: false,
   },
 );
+useDialog.GenerateGameServiceToken = createDialogHook(
+  import(
+    "@/domains/game/components/dialogs/game-generate-service-token-dialog"
+  ),
+  {
+    autoFocus: false,
+  },
+);
 
 useDialog.CreateGroupGame = createDialogHook(
   import("@/domains/game/components/dialogs/group-create-game-dialog"),

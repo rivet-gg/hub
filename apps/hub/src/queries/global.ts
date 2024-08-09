@@ -26,30 +26,30 @@ declare module "@tanstack/react-query" {
   }
 }
 
+export async function getToken() {
+  const tokenCache = queryClient
+    .getQueryCache()
+    .find<Rivet.auth.RefreshIdentityTokenResponse>(identityTokenQueryOptions());
+
+  if (tokenCache?.state.status === "success" && tokenCache.state.data) {
+    return tokenCache.state.data.token as string;
+  }
+
+  if (tokenCache?.state.status === "pending") {
+    const token = (await tokenCache.promise)?.token;
+
+    if (token) {
+      return token;
+    }
+  }
+
+  return (await queryClient.fetchQuery(identityTokenQueryOptions())).token;
+}
+
 const clientOptions: RivetClient.Options = {
   environment: getConfig().apiUrl,
   fetcher: (args) => fetcher({ ...args, withCredentials: true }),
-  token: async () => {
-    const tokenCache = queryClient
-      .getQueryCache()
-      .find<Rivet.auth.RefreshIdentityTokenResponse>(
-        identityTokenQueryOptions(),
-      );
-
-    if (tokenCache?.state.status === "success" && tokenCache.state.data) {
-      return tokenCache.state.data.token as string;
-    }
-
-    if (tokenCache?.state.status === "pending") {
-      const token = (await tokenCache.promise)?.token;
-
-      if (token) {
-        return token;
-      }
-    }
-
-    return (await queryClient.fetchQuery(identityTokenQueryOptions())).token;
-  },
+  token: getToken,
 };
 
 export const rivetClientTokeneless = new RivetClient({

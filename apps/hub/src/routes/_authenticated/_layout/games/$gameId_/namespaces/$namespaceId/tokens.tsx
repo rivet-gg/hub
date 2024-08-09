@@ -75,16 +75,6 @@ function NamespaceTokensRoute() {
           <Text mb="2">Run the following in your terminal:</Text>
           <CopyArea value={`rivet token create dev -n ${namespace.nameId}`} />
         </DocsCard>
-        <DocsCard
-          title="Service token"
-          href="https://rivet.gg/docs/general/concepts/handling-game-tokens#public-namespace-tokens"
-          footer={<Button>Generate</Button>}
-        >
-          <Text>
-            Service tokens are used from private API servers. These should never
-            be shared.
-          </Text>
-        </DocsCard>
         <Modals />
       </Grid>
     </>

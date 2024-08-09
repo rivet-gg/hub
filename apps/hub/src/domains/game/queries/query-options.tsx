@@ -143,3 +143,21 @@ export const gameTokenCloudQueryOptions = ({ gameId }: { gameId: string }) => {
     select: (data) => data.token,
   });
 };
+
+export const gameTokenServiceQueryOptions = ({
+  gameId,
+}: { gameId: string }) => {
+  return queryOptions({
+    staleTime: 0,
+    gcTime: 0,
+    queryKey: ["game", gameId, "token", "cloud"],
+    queryFn: ({
+      queryKey: [
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        _,
+        gameId,
+      ],
+    }) => rivetClient.cloud.games.tokens.createServiceToken(gameId),
+    select: (data) => data.token,
+  });
+};

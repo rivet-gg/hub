@@ -1,4 +1,4 @@
-import { faArrowsDownToLine } from "@fortawesome/pro-solid-svg-icons";
+import { faArrowDownToLine } from "@fortawesome/pro-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { Virtualizer } from "@tanstack/react-virtual";
 import {
@@ -37,7 +37,7 @@ export function LogsArea({
 }
 
 export function Sidebar({ children }: PropsWithChildren) {
-  return <div className="flex flex-col gap-2">{children}</div>;
+  return <div className="flex flex-col gap-2 justify-between">{children}</div>;
 }
 
 type Line = string | { type: "log" | "error" | "warn"; message: string };
@@ -176,27 +176,30 @@ export function LogsView({
         </LogsArea>
         {!sidebar && !showFollowToggle ? null : (
           <Sidebar>
-            {sidebar}
+            <div>{sidebar}</div>
+
             {showFollowToggle ? (
-              <WithTooltip
-                content="Follow logs"
-                trigger={
-                  <div>
-                    <Toggle
-                      onPressedChange={setFollow}
-                      pressed={isEmpty ? false : follow}
-                      disabled={isEmpty}
-                      variant="outline"
-                      aria-label="Toggle follow logs"
-                    >
-                      <FontAwesomeIcon
-                        className="size-4"
-                        icon={faArrowsDownToLine}
-                      />
-                    </Toggle>
-                  </div>
-                }
-              />
+              <div className="border-t pt-4">
+                <WithTooltip
+                  content="Follow logs"
+                  trigger={
+                    <div>
+                      <Toggle
+                        onPressedChange={setFollow}
+                        pressed={isEmpty ? false : follow}
+                        disabled={isEmpty}
+                        variant="outline"
+                        aria-label="Toggle follow logs"
+                      >
+                        <FontAwesomeIcon
+                          className="size-4"
+                          icon={faArrowDownToLine}
+                        />
+                      </Toggle>
+                    </div>
+                  }
+                />
+              </div>
             ) : null}
           </Sidebar>
         )}

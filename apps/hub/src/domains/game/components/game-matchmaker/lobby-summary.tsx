@@ -1,9 +1,7 @@
-import { faSkullCrossbones } from "@fortawesome/pro-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  Badge,
   Button,
   CopyArea,
+  CopyButton,
   Flex,
   Skeleton,
   WithTooltip,
@@ -48,49 +46,38 @@ export function LobbySummary({
         className="flex-wrap"
       >
         <Flex direction="col" gap="4" className="min-w-0" items="start">
-          <Flex gap="2">
-            {isLive ? (
+          <Flex direction="col" gap="4" items="start">
+            <Flex gap="2">
               <WithTooltip
-                content="Delete lobby"
                 trigger={
-                  <Button
-                    variant="destructive"
-                    size="icon"
-                    onClick={() =>
-                      deleteLobby({ lobbyId, namespaceId, gameId })
-                    }
-                  >
-                    <FontAwesomeIcon icon={faSkullCrossbones} />
-                  </Button>
+                  <CopyArea
+                    className="min-w-0 truncate"
+                    variant="discrete"
+                    value={lobbyGroupNameId}
+                  />
                 }
+                content="Lobby Group Name"
               />
-            ) : null}
-            <WithTooltip
-              trigger={
-                <CopyArea
-                  size="sm"
-                  className="min-w-0 truncate"
-                  variant="discrete"
-                  value={lobbyGroupNameId}
-                />
-              }
-              content="Lobby Group Name"
-            />
-            <WithTooltip
-              trigger={
-                <CopyArea
-                  className="min-w-0 truncate"
-                  variant="discrete"
-                  display={lobbyId.split("-")[0]}
-                  value={lobbyId}
-                  size="sm"
-                />
-              }
-              content="Lobby ID"
-            />
-            <Badge variant="outline">
-              <LobbyRegion gameId={gameId} regionId={regionId} showLabel />
-            </Badge>
+              <Button asChild variant="outline">
+                <div>
+                  <LobbyRegion gameId={gameId} regionId={regionId} showLabel />
+                </div>
+              </Button>
+            </Flex>
+
+            <Flex gap="2">
+              <CopyButton value={lobbyId}>
+                <Button variant="outline">Copy ID</Button>
+              </CopyButton>
+              {isLive ? (
+                <Button
+                  variant="destructive"
+                  onClick={() => deleteLobby({ lobbyId, namespaceId, gameId })}
+                >
+                  Destroy
+                </Button>
+              ) : null}
+            </Flex>
           </Flex>
         </Flex>
         <Flex

@@ -12,4 +12,5 @@ export * from "./min-height";
 export * from "./min-width";
 export * from "./text-align";
 export * from "./display";
+export * from "./height";
 export * from "./common";
