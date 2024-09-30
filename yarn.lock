@@ -50,7 +50,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/compat-data@npm:^7.22.6, @babel/compat-data@npm:^7.24.8":
+"@babel/compat-data@npm:^7.22.6":
   version: 7.24.9
   resolution: "@babel/compat-data@npm:7.24.9"
   checksum: 10c0/95a69c9ed00ae78b4921f33403e9b35518e6139a0c46af763c65dea160720cb57c6cc23f7d30249091a0248335b0e39de5c8dfa8e7877c830e44561e0bdc1254
@@ -172,20 +172,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/helper-compilation-targets@npm:^7.22.6":
-  version: 7.24.8
-  resolution: "@babel/helper-compilation-targets@npm:7.24.8"
-  dependencies:
-    "@babel/compat-data": "npm:^7.24.8"
-    "@babel/helper-validator-option": "npm:^7.24.8"
-    browserslist: "npm:^4.23.1"
-    lru-cache: "npm:^5.1.1"
-    semver: "npm:^6.3.1"
-  checksum: 10c0/2885c44ef6aaf82b7e4352b30089bb09fbe08ed5ec24eb452c2bdc3c021e2a65ab412f74b3d67ec1398da0356c730b33a2ceca1d67d34c85080d31ca6efa9aec
-  languageName: node
-  linkType: hard
-
-"@babel/helper-compilation-targets@npm:^7.24.7":
+"@babel/helper-compilation-targets@npm:^7.22.6, @babel/helper-compilation-targets@npm:^7.24.7":
   version: 7.24.7
   resolution: "@babel/helper-compilation-targets@npm:7.24.7"
   dependencies:
@@ -4198,6 +4185,7 @@ __metadata:
     "@rivet-gg/icons": "workspace:^"
     "@tailwindcss/container-queries": "npm:^0.1.1"
     "@tanstack/react-virtual": "npm:^3.10.1"
+    "@types/logfmt": "npm:^1"
     "@types/mime": "npm:^4.0.0"
     "@types/node": "npm:^20.11.30"
     "@types/react": "npm:^18.2.66"
@@ -4213,7 +4201,7 @@ __metadata:
     date-fns: "npm:^3.6.0"
     framer-motion: "npm:^11.2.11"
     input-otp: "npm:^1.2.3"
-    lucide-react: "npm:^0.439.0"
+    logfmt: "npm:^1.4.0"
     postcss: "npm:^8.4.38"
     react: "npm:^18.2.0"
     react-day-picker: "npm:^9.0.9"
@@ -4283,6 +4271,7 @@ __metadata:
     "@tanstack/router-vite-plugin": "npm:^1.48.6"
     "@types/bcryptjs": "npm:^2.4.6"
     "@types/file-saver": "npm:^2"
+    "@types/logfmt": "npm:^1"
     "@types/mime": "npm:^4.0.0"
     "@types/node": "npm:^20.11.30"
     "@types/react": "npm:^18.2.66"
@@ -6506,6 +6495,15 @@ __metadata:
   version: 4.17.5
   resolution: "@types/lodash@npm:4.17.5"
   checksum: 10c0/55924803ed853e72261512bd3eaf2c5b16558c3817feb0a3125ef757afe46e54b86f33d1960e40b7606c0ddab91a96f47966bf5e6006b7abfd8994c13b04b19b
+  languageName: node
+  linkType: hard
+
+"@types/logfmt@npm:^1":
+  version: 1.2.6
+  resolution: "@types/logfmt@npm:1.2.6"
+  dependencies:
+    "@types/node": "npm:*"
+  checksum: 10c0/02f87e0f67f41cf519150a277d1cc3dc1a4967136686972ae1191afd5c6da5260aed8d3807a88e52bc42f1a016c05c8eaa77f2bf14b3209d8a28920edada1810
   languageName: node
   linkType: hard
 
@@ -10591,6 +10589,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"logfmt@npm:^1.4.0":
+  version: 1.4.0
+  resolution: "logfmt@npm:1.4.0"
+  dependencies:
+    split: "npm:0.2.x"
+    through: "npm:2.3.x"
+  bin:
+    logfmt: bin/logfmt
+  checksum: 10c0/b11cc3c9c8460e1bb240a7ae146638df2ec092a6543880b1544964df0001fa210062000d76628822843406983ad2f2b302ce0e764f227ad9a4591076e9ab66af
+  languageName: node
+  linkType: hard
+
 "loose-envify@npm:^1.0.0, loose-envify@npm:^1.1.0, loose-envify@npm:^1.4.0":
   version: 1.4.0
   resolution: "loose-envify@npm:1.4.0"
@@ -10633,15 +10643,6 @@ __metadata:
   dependencies:
     yallist: "npm:^4.0.0"
   checksum: 10c0/cb53e582785c48187d7a188d3379c181b5ca2a9c78d2bce3e7dee36f32761d1c42983da3fe12b55cb74e1779fa94cdc2e5367c028a9b35317184ede0c07a30a9
-  languageName: node
-  linkType: hard
-
-"lucide-react@npm:^0.439.0":
-  version: 0.439.0
-  resolution: "lucide-react@npm:0.439.0"
-  peerDependencies:
-    react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0-rc
-  checksum: 10c0/153c6da6a1bdcc03c47080b00a50a341b7e485ccbb479a742c0fb606355acf93c136630626dad2d57cafe1f5c691dd4f2fcd0f2b7c813e7c9e0e1f065cf62be0
   languageName: node
   linkType: hard
 
@@ -13012,6 +13013,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"split@npm:0.2.x":
+  version: 0.2.10
+  resolution: "split@npm:0.2.10"
+  dependencies:
+    through: "npm:2"
+  checksum: 10c0/346335693ffae22262e5f329611d203b855d606099a03bf16b38cdcecaba8a0d0ba9af78b0cf70aeb761e2d34b97c125025f50a96820242bcff537cba37b6e07
+  languageName: node
+  linkType: hard
+
 "sprintf-js@npm:^1.1.3":
   version: 1.1.3
   resolution: "sprintf-js@npm:1.1.3"
@@ -13408,6 +13418,13 @@ __metadata:
     readable-stream: "npm:~2.3.6"
     xtend: "npm:~4.0.1"
   checksum: 10c0/cbfe5b57943fa12b4f8c043658c2a00476216d79c014895cef1ac7a1d9a8b31f6b438d0e53eecbb81054b93128324a82ecd59ec1a4f91f01f7ac113dcb14eade
+  languageName: node
+  linkType: hard
+
+"through@npm:2, through@npm:2.3.x":
+  version: 2.3.8
+  resolution: "through@npm:2.3.8"
+  checksum: 10c0/4b09f3774099de0d4df26d95c5821a62faee32c7e96fb1f4ebd54a2d7c11c57fe88b0a0d49cf375de5fee5ae6bf4eb56dbbf29d07366864e2ee805349970d3cc
   languageName: node
   linkType: hard
 

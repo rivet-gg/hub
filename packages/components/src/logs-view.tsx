@@ -10,6 +10,7 @@ import {
   useState,
 } from "react";
 import { cn } from "./lib/utils";
+import { type Line, LogRow } from "./logs-row";
 import { Skeleton } from "./ui/skeleton";
 import { Toggle } from "./ui/toggle";
 import { WithTooltip } from "./ui/tooltip";
@@ -38,50 +39,6 @@ export function LogsArea({
 
 export function Sidebar({ children }: PropsWithChildren) {
   return <div className="flex flex-col gap-2 justify-between">{children}</div>;
-}
-
-type Line = string | { type: "log" | "error" | "warn"; message: string };
-
-interface LogRowProps {
-  timestamp?: string;
-  line?: Line;
-  isFirst?: boolean;
-}
-
-function LogRow({ timestamp, line, isFirst }: LogRowProps) {
-  const isError = typeof line === "object" && line.type === "error";
-  const isWarn = typeof line === "object" && line.type === "warn";
-
-  return (
-    <div className="text-nowrap flex flex-col md:flex-row my-1 md:my-0">
-      {isFirst ? (
-        <span className="font-mono text-xs">
-          Only last few lines are visible here. To see all logs, export them.
-        </span>
-      ) : (
-        <>
-          <span
-            className={cn(
-              "text-muted-foreground md:my-1 font-mono text-xs p-0.5 pr-2 inline-block",
-              isError && "bg-destructive/20",
-              isWarn && "bg-warning/20",
-            )}
-          >
-            {timestamp}
-          </span>
-          <pre
-            className={cn(
-              "md:my-1 font-mono text-xs p-0.5 inline-block whitespace-pre-wrap min-w-0 flex-1 break-all",
-              isError && "bg-destructive/20",
-              isWarn && "bg-warning/20",
-            )}
-          >
-            {typeof line === "string" ? line : line?.message}
-          </pre>
-        </>
-      )}
-    </div>
-  );
 }
 
 interface LogsViewProps {
@@ -171,6 +128,7 @@ export function LogsView({
               estimateSize={() => 28}
               className="w-full"
               row={<LogRow />}
+              rowClassName="hover:bg-gray-100/5"
             />
           )}
         </LogsArea>

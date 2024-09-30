@@ -11,6 +11,7 @@ import {
   useImperativeHandle,
   useRef,
 } from "react";
+import { cn } from "./lib/utils";
 import { ScrollArea, type ScrollAreaProps } from "./ui/scroll-area";
 
 // biome-ignore lint/suspicious/noExplicitAny: we don't care about the type of the row
@@ -28,6 +29,7 @@ interface VirtualScrollAreaProps<TItem extends Record<string, any>>
   getRowData: (index: number) => TItem;
   className?: string;
   row: ReactElement<TItem>;
+  rowClassName?: string;
   virtualizerRef?: RefObject<Virtualizer<HTMLDivElement, Element>>;
 }
 
@@ -35,6 +37,7 @@ interface VirtualScrollAreaProps<TItem extends Record<string, any>>
 export function VirtualScrollArea<TItem extends Record<string, any>>({
   className,
   row: Row,
+  rowClassName,
   getRowData,
   viewportProps,
   virtualizerRef,
@@ -65,7 +68,7 @@ export function VirtualScrollArea<TItem extends Record<string, any>>({
           <div
             key={virtualItem.key}
             data-index={virtualItem.index}
-            className="absolute w-full inset-x-0 px-4"
+            className={cn("absolute w-full inset-x-0 px-4", rowClassName)}
             ref={rowVirtualizer.measureElement}
             style={{
               transform: `translateY(${virtualItem.start}px)`,

@@ -49,6 +49,7 @@
     "@sentry/vite-plugin": "^2.22.2",
     "@tanstack/router-vite-plugin": "^1.48.6",
     "@types/file-saver": "^2",
+    "@types/logfmt": "^1",
     "@types/mime": "^4.0.0",
     "@types/node": "^20.11.30",
     "@types/react": "^18.2.66",

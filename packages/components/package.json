@@ -61,7 +61,7 @@
     "date-fns": "^3.6.0",
     "framer-motion": "^11.2.11",
     "input-otp": "^1.2.3",
-    "lucide-react": "^0.439.0",
+    "logfmt": "^1.4.0",
     "react": "^18.2.0",
     "react-day-picker": "^9.0.9",
     "react-dom": "^18.2.0",
@@ -75,6 +75,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@types/logfmt": "^1",
     "@types/mime": "^4.0.0",
     "@types/node": "^20.11.30",
     "@types/react": "^18.2.66",
